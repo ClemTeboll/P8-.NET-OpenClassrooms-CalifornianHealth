@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  californianhealth.webapis.calendar:
+    image: ${DOCKER_REGISTRY-}californianhealthwebapiscalendar
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Calendar/Dockerfile
+
+  californianhealth.webapis.doctors:
+    image: ${DOCKER_REGISTRY-}californianhealthwebapisdoctors
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Doctors/Dockerfile
+
