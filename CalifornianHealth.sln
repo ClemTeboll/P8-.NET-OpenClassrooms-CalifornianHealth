@@ -7,23 +7,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A3EC9AD0-7D9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8D3A5E70-59D1-4D11-B48D-68E57B64C02C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.Tests.UnitTests", "CalifornianHealth.Tests.UnitTests\CalifornianHealth.Tests.UnitTests.csproj", "{D9A9B937-559B-4534-8B95-84521E32467C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Tests.UnitTests", "CalifornianHealth.Tests.UnitTests\CalifornianHealth.Tests.UnitTests.csproj", "{D9A9B937-559B-4534-8B95-84521E32467C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.Tests.IntegrationTests", "CalifornianHealth.Tests.IntegrationTests\CalifornianHealth.Tests.IntegrationTests.csproj", "{E0043E0B-6D3B-4768-8D31-586523AB279E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Tests.IntegrationTests", "CalifornianHealth.Tests.IntegrationTests\CalifornianHealth.Tests.IntegrationTests.csproj", "{E0043E0B-6D3B-4768-8D31-586523AB279E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.UserInterface", "CalifornianHealth.UserInterface\CalifornianHealth.UserInterface.csproj", "{176D2E63-04A9-4E60-8331-0BE3AA7F2205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.UserInterface", "CalifornianHealth.UserInterface\CalifornianHealth.UserInterface.csproj", "{176D2E63-04A9-4E60-8331-0BE3AA7F2205}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.Core", "CalifornianHealth.Core\CalifornianHealth.Core.csproj", "{104E0BDC-32DC-4E96-9B6A-66AF6B30D09D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Core", "CalifornianHealth.Core\CalifornianHealth.Core.csproj", "{104E0BDC-32DC-4E96-9B6A-66AF6B30D09D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.Infrastructure", "CalifornianHealth.Infrastructure\CalifornianHealth.Infrastructure.csproj", "{C9978E5F-9F8F-4C88-9697-E91A1CD9923C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Infrastructure", "CalifornianHealth.Infrastructure\CalifornianHealth.Infrastructure.csproj", "{C9978E5F-9F8F-4C88-9697-E91A1CD9923C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{05FBA53A-0013-46B2-AC35-7144429DC097}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.WebAPIs.Doctors", "CalifornianHealth.WebAPIs.Doctors\CalifornianHealth.WebAPIs.Doctors.csproj", "{37F65A14-E283-44FD-BE59-03B4EC0C7B9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.WebAPIs.Doctors", "CalifornianHealth.WebAPIs.Doctors\CalifornianHealth.WebAPIs.Doctors.csproj", "{37F65A14-E283-44FD-BE59-03B4EC0C7B9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.WebAPIs.Calendar", "CalifornianHealth.WebAPIs.Calendar\CalifornianHealth.WebAPIs.Calendar.csproj", "{6B93B658-66EE-42AB-95C9-479255957DB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.WebAPIs.Calendar", "CalifornianHealth.WebAPIs.Calendar\CalifornianHealth.WebAPIs.Calendar.csproj", "{6B93B658-66EE-42AB-95C9-479255957DB0}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{76FB5AFB-BB66-4B42-B954-19DBB97F8525}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.WebAPIs.Gateway", "CalifornianHealth.WebAPIs.Gateway\CalifornianHealth.WebAPIs.Gateway.csproj", "{1AF4EF85-43F9-45F6-9539-CA008E1C5925}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{76FB5AFB-BB66-4B42-B954-19DBB97F8525}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76FB5AFB-BB66-4B42-B954-19DBB97F8525}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76FB5AFB-BB66-4B42-B954-19DBB97F8525}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AF4EF85-43F9-45F6-9539-CA008E1C5925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AF4EF85-43F9-45F6-9539-CA008E1C5925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AF4EF85-43F9-45F6-9539-CA008E1C5925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AF4EF85-43F9-45F6-9539-CA008E1C5925}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{05FBA53A-0013-46B2-AC35-7144429DC097} = {A3EC9AD0-7D91-4538-BE70-4F58BA9EAB51}
 		{37F65A14-E283-44FD-BE59-03B4EC0C7B9B} = {05FBA53A-0013-46B2-AC35-7144429DC097}
 		{6B93B658-66EE-42AB-95C9-479255957DB0} = {05FBA53A-0013-46B2-AC35-7144429DC097}
+		{1AF4EF85-43F9-45F6-9539-CA008E1C5925} = {05FBA53A-0013-46B2-AC35-7144429DC097}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A12D2C9E-125B-4296-96DB-93DC31E2A9F8}

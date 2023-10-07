@@ -13,3 +13,9 @@ services:
       context: .
       dockerfile: CalifornianHealth.WebAPIs.Doctors/Dockerfile
 
+  californianhealth.webapis.gateway:
+    image: ${DOCKER_REGISTRY-}californianhealthwebapisgateway
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Gateway/Dockerfile
+
