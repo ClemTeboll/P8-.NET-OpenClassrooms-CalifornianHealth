@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CalifornianHealth.UserInterface/Pages/_Import_from_mono_app
