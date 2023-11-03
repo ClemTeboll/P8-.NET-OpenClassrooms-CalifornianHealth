@@ -1,4 +1,5 @@
-﻿using CalifornianHealth.WebAPIs.Doctors.Routes;
+﻿using CalifornianHealth.Core.Consultant;
+using CalifornianHealth.WebAPIs.Doctors.Routes;
 
 namespace CalifornianHealth.WebAPIs.Doctors.Endpoints
 {
@@ -7,6 +8,8 @@ namespace CalifornianHealth.WebAPIs.Doctors.Endpoints
         public static IEndpointRouteBuilder MapConsultant(this IEndpointRouteBuilder app)
         {
             app.MapGet(ApiRoutes.Consultant.GetTags, ConsultantManager.ListConsultant);
+
+            return app;
         }
     }
 }
