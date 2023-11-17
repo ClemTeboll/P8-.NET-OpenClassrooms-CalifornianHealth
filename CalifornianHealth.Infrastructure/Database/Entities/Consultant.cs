@@ -5,9 +5,9 @@ namespace CalifornianHealth.Infrastructure.Database.Entities
     public partial class Consultant
     {
         public int Id { get; set; }
-        public required string FirstName { get; set; }
-        public required string LastName { get; set; }
-        public required string Speciality { get; set; }
+        public required string FirstName { get; set; } = string.Empty;
+        public required string LastName { get; set; } = string.Empty;
+        public required string Speciality { get; set; } = string.Empty;
 
         public static void Configure(ModelBuilder modelBuilder)
         {

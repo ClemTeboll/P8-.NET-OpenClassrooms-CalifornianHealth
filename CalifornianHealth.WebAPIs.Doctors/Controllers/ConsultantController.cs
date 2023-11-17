@@ -1,8 +1,4 @@
-﻿using CalifornianHealth.Core.Consultant;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CalifornianHealth.WebAPIs.Doctors.Controllers
 {
@@ -14,11 +10,7 @@ namespace CalifornianHealth.WebAPIs.Doctors.Controllers
         [HttpGet]
         public IEnumerable<ConsultantDto> Get()
         {
-            //ConsultantManager.ListConsultant();
-            ConsultantDto consultant = new ConsultantDto("a", "b", "c");
-            List<ConsultantDto> list = new List<ConsultantDto>();
-            list.Add(consultant);
-            return list;
+            return new List<ConsultantDto>();
         }
 
         // GET api/<ConsultantController>/5

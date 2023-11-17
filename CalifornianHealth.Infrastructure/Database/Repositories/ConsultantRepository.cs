@@ -1,18 +1,16 @@
-﻿using CalifornianHealth.Core.Consultant.Contracts;
-using CalifornianHealth.Infrastructure.Database.Entities;
+﻿using CalifornianHealth.Infrastructure.Database.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace CalifornianHealth.Infrastructure.Database.Repositories
 {
     public class ConsultantRepository
-        //: IConsultantRepository
+        //: IConsultant, IConsultantRepository
     {
-        public ConsultantRepository(DbSet<Consultant> consultants)
+        private DbSet<Consultant> _dbSet;
+        public ConsultantRepository(DbSet<Consultant> dbSet)
+            //: base(dbSet)
         {
-            
+            _dbSet = dbSet;
         }
     }
 }
