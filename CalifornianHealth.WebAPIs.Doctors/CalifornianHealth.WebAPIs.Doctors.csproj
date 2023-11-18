@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CalifornianHealth.Core\CalifornianHealth.Core.csproj" />
+    <ProjectReference Include="..\CalifornianHealth.Infrastructure\CalifornianHealth.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

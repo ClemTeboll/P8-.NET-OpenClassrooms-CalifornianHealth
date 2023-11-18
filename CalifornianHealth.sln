@@ -16,9 +16,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Core", "CalifornianHealth.Core\CalifornianHealth.Core.csproj", "{104E0BDC-32DC-4E96-9B6A-66AF6B30D09D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Infrastructure", "CalifornianHealth.Infrastructure\CalifornianHealth.Infrastructure.csproj", "{C9978E5F-9F8F-4C88-9697-E91A1CD9923C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{1AF4EF85-43F9-45F6-9539-CA008E1C5925} = {1AF4EF85-43F9-45F6-9539-CA008E1C5925}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIs", "APIs", "{05FBA53A-0013-46B2-AC35-7144429DC097}"
 EndProject
