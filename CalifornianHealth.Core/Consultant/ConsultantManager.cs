@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CalifornianHealth.Core.Consultant.Contracts;
+using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Microsoft.EntityFrameworkCore;
-using CalifornianHealth.Core.Consultant.Contracts;
 
 namespace CalifornianHealth.Core.Consultant
 {
-    public static class ConsultantManager
+    public class ConsultantManager : IConsultantManager
     {
-        public static async Task<IEnumerable<ConsultantDto>> ListConsultant(IConsultantRepository repository)
-        {
-            var request = await repository.ToListAsync();
+        private readonly IConsultantRepository _consultantRepository;
 
-            return request.Select(request => new ConsultantDto
+        public ConsultantManager(IConsultantRepository consultantRepository)
+        {
+            _consultantRepository = consultantRepository;
+        }
+        public Task<IEnumerable<ConsultantOutputDto>> ListConsultants()
+        {
+            var request = _consultantRepository.FetchConsultants();
+
+            return (Task<IEnumerable<ConsultantOutputDto>>)request.Select(request => new ConsultantOutputDto
             (
                 request.FirstName,
                 request.LastName,

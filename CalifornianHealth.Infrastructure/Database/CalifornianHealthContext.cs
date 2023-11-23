@@ -1,5 +1,5 @@
 ﻿using CalifornianHealth.Infrastructure.Database.Entities;
-using CalifornianHealth.Infrastructure.Database.Repositories;
+using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace CalifornianHealth.Infrastructure.Database
@@ -14,6 +14,7 @@ namespace CalifornianHealth.Infrastructure.Database
             Consultant.Configure(modelBuilder);
             ConsultantCalendar.Configure(modelBuilder);
             Appointment.Configure(modelBuilder);
+            Patient.Configure(modelBuilder);
         }
 
         public async Task<int> SaveChangesAsync()
@@ -21,7 +22,8 @@ namespace CalifornianHealth.Infrastructure.Database
             return await SaveChangesAsync();
         }
 
-        public ConsultantRepository ConsultantRepository => new(Set<Consultant>());
+        //public ConsultantRepository ConsultantRepository => new(Set<Consultant>());
+        public ConsultantRepository ConsultantRepository { get; set; }
 
         public DbSet<Consultant> Consultants { get; set; }
         public DbSet<ConsultantCalendar> ConsultantCalendars { get; set; }

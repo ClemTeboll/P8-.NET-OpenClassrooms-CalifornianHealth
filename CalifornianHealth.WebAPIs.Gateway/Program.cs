@@ -1,4 +1,5 @@
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -8,13 +9,13 @@ var applicationConnectionString = builder.Configuration.GetConnectionString("App
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("configuration.json", optional: false, reloadOnChange: true);
 
-
-builder.Services.AddScoped(serviceProvider => serviceProvider.GetService<CalifornianHealthContext>()!.ConsultantRepository);
+builder.Services.AddCalifornianHealthContext(applicationConnectionString);
 
 builder.Services.AddControllers();
 builder.Services.AddOcelot();
 
-builder.Services.AddCalifornianHealthContext(applicationConnectionString);
+builder.Services.AddScoped(serviceProvider => serviceProvider.GetService<CalifornianHealthContext>()!.ConsultantRepository);
+builder.Services.AddTransient<IConsultantRepository, ConsultantRepository>();
 
 var app = builder.Build();
 

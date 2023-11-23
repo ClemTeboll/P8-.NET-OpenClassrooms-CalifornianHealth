@@ -1,9 +1,9 @@
 ﻿using CalifornianHealth.Infrastructure.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CalifornianHealth.Infrastructure.Database.Repositories
+namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository
 {
-    public class ConsultantCalendarRepository
+    public class ConsultantCalendarRepository : IConsultantCalendarRepository
     {
         private DbSet<ConsultantCalendar> _dbSet;
 

@@ -8,8 +8,6 @@ namespace CalifornianHealth.Infrastructure.Database;
 
 public static class ServiceCollectionExtensions
 {
-    
-
     public static IServiceCollection AddCalifornianHealthContext(this IServiceCollection services, string connectionString = "Server=localhost;Database=P8_OC_CalifornianHealth;Trusted_Connection=true;TrustServerCertificate=true;")
     {
         if (string.IsNullOrEmpty(connectionString))

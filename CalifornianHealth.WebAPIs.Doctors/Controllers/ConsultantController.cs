@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CalifornianHealth.Core.Consultant;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CalifornianHealth.WebAPIs.Doctors.Controllers
 {
@@ -6,11 +7,23 @@ namespace CalifornianHealth.WebAPIs.Doctors.Controllers
     [ApiController]
     public class ConsultantController : ControllerBase
     {
+        private readonly ConsultantManager _manager;
+
+        public ConsultantController(ConsultantManager manager)
+        {
+            _manager = manager;
+        }
+
         // GET: api/<ConsultantController>
         [HttpGet]
-        public IEnumerable<ConsultantDto> Get()
+        public async Task<ActionResult<IEnumerable<ConsultantOutputDto>>> Get()
         {
-            return new List<ConsultantDto>();
+            var consultantList = await _manager.ListConsultants();
+
+            if (consultantList == null)
+                return NotFound("No consultants found");
+
+            return Ok(consultantList);
         }
 
         // GET api/<ConsultantController>/5
