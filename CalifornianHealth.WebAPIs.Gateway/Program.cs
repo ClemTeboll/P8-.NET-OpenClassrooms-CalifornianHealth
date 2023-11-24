@@ -1,3 +1,5 @@
+using CalifornianHealth.Core.Consultant.Contracts;
+using CalifornianHealth.Core.Consultant;
 using CalifornianHealth.Infrastructure.Database;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Ocelot.DependencyInjection;
@@ -14,8 +16,10 @@ builder.Services.AddCalifornianHealthContext(applicationConnectionString);
 builder.Services.AddControllers();
 builder.Services.AddOcelot();
 
-builder.Services.AddScoped(serviceProvider => serviceProvider.GetService<CalifornianHealthContext>()!.ConsultantRepository);
-builder.Services.AddTransient<IConsultantRepository, ConsultantRepository>();
+//builder.Services.AddScoped(serviceProvider => serviceProvider.GetService<CalifornianHealthContext>()!.ConsultantRepository);
+builder.Services.AddTransient<IConsultantManager, ConsultantManager>();
+builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
+
 
 var app = builder.Build();
 

@@ -1,4 +1,4 @@
-﻿using CalifornianHealth.Core.Consultant;
+﻿using CalifornianHealth.Core.Consultant.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalifornianHealth.WebAPIs.Doctors.Controllers
@@ -7,9 +7,9 @@ namespace CalifornianHealth.WebAPIs.Doctors.Controllers
     [ApiController]
     public class ConsultantController : ControllerBase
     {
-        private readonly ConsultantManager _manager;
+        private readonly IConsultantManager _manager;
 
-        public ConsultantController(ConsultantManager manager)
+        public ConsultantController(IConsultantManager manager)
         {
             _manager = manager;
         }

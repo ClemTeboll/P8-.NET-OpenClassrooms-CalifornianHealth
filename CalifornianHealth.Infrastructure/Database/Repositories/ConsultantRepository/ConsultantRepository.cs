@@ -5,12 +5,10 @@ namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepos
 {
     public class ConsultantRepository : IConsultantRepository
     {
-        private DbSet<Consultant> _dbSet;
         private readonly CalifornianHealthContext _dbContext;
 
-        public ConsultantRepository(DbSet<Consultant> dbSet, CalifornianHealthContext dbContext)
+        public ConsultantRepository(CalifornianHealthContext dbContext)
         {
-            _dbSet = dbSet;
             _dbContext = dbContext;
         }
 

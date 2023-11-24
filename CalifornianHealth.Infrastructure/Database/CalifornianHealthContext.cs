@@ -10,24 +10,25 @@ namespace CalifornianHealth.Infrastructure.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             Consultant.Configure(modelBuilder);
             ConsultantCalendar.Configure(modelBuilder);
             Appointment.Configure(modelBuilder);
             Patient.Configure(modelBuilder);
         }
 
-        public async Task<int> SaveChangesAsync()
-        {
-            return await SaveChangesAsync();
-        }
-
-        //public ConsultantRepository ConsultantRepository => new(Set<Consultant>());
-        public ConsultantRepository ConsultantRepository { get; set; }
-
         public DbSet<Consultant> Consultants { get; set; }
         public DbSet<ConsultantCalendar> ConsultantCalendars { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Patient> Patients { get; set; }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await base.SaveChangesAsync();
+        }
+
+        //public ConsultantRepository ConsultantRepository => new(Set<Consultant>());
+        //public ConsultantRepository ConsultantRepository { get; set; }
+
+        
     }
 }

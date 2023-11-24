@@ -1,4 +1,5 @@
 ﻿using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ public static class ServiceCollectionExtensions
         {
             options.UseSqlServer(connectionString, (o) => o.EnableRetryOnFailure());
             options.EnableSensitiveDataLogging(true);
-        });
+        })
+        .AddScoped<IConsultantRepository, ConsultantRepository>();
     }
 }
