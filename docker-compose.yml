@@ -1,0 +1,59 @@
+version: '3.4'
+
+services:
+  californianhealth.db:
+    container_name: CH-db
+    image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Passw0rd!
+    ports:
+      - 8001:1433
+
+  californianhealth.webapis.gateway:
+    container_name: CH-API-Gateway
+    image: ${DOCKER_REGISTRY-}californianhealthwebapisgateway
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Gateway/Dockerfile
+    ports:
+      - 32779:80
+      - 32778:443
+    environment:
+      - DB_HOST=CH-db
+      - DB_NAME=CalifornianHealthDB
+      - SA_PASSWORD=Passw0rd!
+    depends_on:
+      - californianhealth.db
+  
+  californianhealth.webapis.doctors:
+    container_name: CH-API-Doctors
+    image: ${DOCKER_REGISTRY-}californianhealthwebapisdoctors
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Doctors/Dockerfile
+    ports:
+      - 32777:80
+      - 32776:443
+    environment:
+      - DB_HOST=CH-db
+      - DB_NAME=CalifornianHealthDB
+      - SA_PASSWORD=Passw0rd!
+    depends_on:
+      - californianhealth.db
+
+  californianhealth.webapis.calendar:
+    container_name: CH-API-Calendar
+    image: ${DOCKER_REGISTRY-}californianhealthwebapiscalendar
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Calendar/Dockerfile
+    ports:
+      - 32775:80
+      - 32774:443
+    environment:
+      - DB_HOST=CH-db
+      - DB_NAME=CalifornianHealthDB
+      - SA_PASSWORD=Passw0rd!
+    depends_on:
+      - californianhealth.db
