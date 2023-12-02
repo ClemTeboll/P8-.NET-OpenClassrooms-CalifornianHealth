@@ -1,7 +1,12 @@
 using CalifornianHealth.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
-var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection")!;
+//var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection")!;
+
+var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+var dbPassword = Environment.GetEnvironmentVariable("SA_PASSWORD");
+var applicationConnectionString = $"Data Source={dbHost};Initial Catalogue={dbName}; User Id=sa; Password={dbPassword};Trusted_Connection=true;TrustServerCertificate=True";
 
 builder.Services.AddScoped(serviceProvider => serviceProvider.GetService<CalifornianHealthContext>()!);
 

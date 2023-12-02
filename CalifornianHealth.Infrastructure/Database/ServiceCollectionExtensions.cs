@@ -9,7 +9,7 @@ namespace CalifornianHealth.Infrastructure.Database;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddCalifornianHealthContext(this IServiceCollection services, string connectionString = "Server=localhost;Database=P8_OC_CalifornianHealth;Trusted_Connection=true;TrustServerCertificate=true;")
+    public static IServiceCollection AddCalifornianHealthContext(this IServiceCollection services, string connectionString)
     {
         if (string.IsNullOrEmpty(connectionString))
             return services;
@@ -18,7 +18,6 @@ public static class ServiceCollectionExtensions
         {
             options.UseSqlServer(connectionString, (o) => o.EnableRetryOnFailure());
             options.EnableSensitiveDataLogging(true);
-        })
-        .AddScoped<IConsultantRepository, ConsultantRepository>();
+        });
     }
 }

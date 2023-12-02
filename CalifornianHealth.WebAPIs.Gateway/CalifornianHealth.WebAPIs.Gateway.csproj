@@ -26,9 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CalifornianHealth.Core\CalifornianHealth.Core.csproj" />
     <ProjectReference Include="..\CalifornianHealth.Infrastructure\CalifornianHealth.Infrastructure.csproj" />
-    <ProjectReference Include="..\CalifornianHealth.WebAPIs.Calendar\CalifornianHealth.WebAPIs.Calendar.csproj" />
-    <ProjectReference Include="..\CalifornianHealth.WebAPIs.Doctors\CalifornianHealth.WebAPIs.Doctors.csproj" />
   </ItemGroup>
 
 </Project>

@@ -25,10 +25,5 @@ namespace CalifornianHealth.Infrastructure.Database
         {
             return await base.SaveChangesAsync();
         }
-
-        //public ConsultantRepository ConsultantRepository => new(Set<Consultant>());
-        //public ConsultantRepository ConsultantRepository { get; set; }
-
-        
     }
 }
