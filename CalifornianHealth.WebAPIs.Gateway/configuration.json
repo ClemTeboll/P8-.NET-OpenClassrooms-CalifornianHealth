@@ -1,8 +1,8 @@
 ﻿{
-  "ReRoutes": [
+  "Routes": [
     {
       "DownstreamPathTemplate": "/api/calendar/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "CalifornianHealth.WebAPIs.Calendar",
@@ -13,15 +13,15 @@
       "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/api/doctors/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/api/Consultant",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "CalifornianHealth.WebAPIs.Doctors",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 32776
         }
       ],
-      "UpstreamPathTemplate": "/api/d/{everything}",
+      "UpstreamPathTemplate": "/gateway/Consultant",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
     }
   ],

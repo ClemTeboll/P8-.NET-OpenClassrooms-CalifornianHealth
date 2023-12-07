@@ -36,7 +36,7 @@ services:
       - 32777:80
       - 32776:443
     environment:
-      - DB_HOST=CH-db
+      - DB_HOST=localhost,8001
       - DB_NAME=CalifornianHealthDB
       - SA_PASSWORD=Passw0rd!
     depends_on:

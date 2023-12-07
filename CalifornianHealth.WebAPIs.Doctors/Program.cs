@@ -2,14 +2,16 @@ using CalifornianHealth.Core.Consultant;
 using CalifornianHealth.Core.Consultant.Contracts;
 using CalifornianHealth.Infrastructure.Database;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Drawing.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection")!;
-var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-var dbPassword = Environment.GetEnvironmentVariable("SA_PASSWORD");
-var applicationConnectionString = $"Data Source={dbHost};Initial Catalogue={dbName}; User Id=sa; Password={dbPassword};Trusted_Connection=true;TrustServerCertificate=True";
+//var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+//var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+//var dbPassword = Environment.GetEnvironmentVariable("SA_PASSWORD");
+var applicationConnectionString = "Server=tcp:192.168.1.45,8001;Database=CalifornianHealthDB;User=sa;Password=Passw0rd!;TrustServerCertificate=True";
 
 builder.Services.AddCalifornianHealthContext(applicationConnectionString);
 
@@ -22,6 +24,12 @@ builder.Services.AddTransient<IConsultantManager, ConsultantManager>();
 builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
 var app = builder.Build();
+
+using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
+    context.Database.Migrate();
+}
 
 if (app.Environment.IsDevelopment())
 {
