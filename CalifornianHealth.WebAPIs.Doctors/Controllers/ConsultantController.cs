@@ -18,7 +18,7 @@ namespace CalifornianHealth.WebAPIs.Doctors.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ConsultantOutputDto>>> Get()
         {
-            var consultantList = await _manager.ListConsultants();
+            var consultantList = _manager.ListConsultants();
 
             if (consultantList == null)
                 return NotFound("No consultants found");

@@ -1,4 +1,4 @@
-﻿@* @model CalifornianHealthMonolithic.Models.ConsultantModelList *@
+﻿
 
 @* @{
     ViewBag.Title = "Home Page";
@@ -78,18 +78,17 @@
                 <h2 class="ser-title">Meet Our Doctors!</h2>
                 <hr class="botm-line">
             </div>
-           @*  @if (Model.consultants != null)
+            @if (Model._consultantOutputDto != null)
             {
                 int i = 0;
-                foreach (var consultant in Model.consultants)
+                foreach (var consultant in Model._consultantOutputDto)
                 {
-
                     i++;
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="thumbnail">
                             <img src=@String.Format("img/doctor{0}.jpg", i) alt="..." class="team-img">
                             <div class="caption">
-                                <h3>@consultant.FName </h3>
+                                <h3>@consultant.FirstName @consultant.LastName</h3>
                                 <p>@consultant.Speciality</p>
                                 <ul class="list-inline">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -100,7 +99,7 @@
                         </div>
                     </div>
                 }
-            } *@
+            }
         </div>
     </div>
 </section>

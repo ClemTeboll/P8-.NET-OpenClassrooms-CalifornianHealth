@@ -3,8 +3,6 @@ using CalifornianHealth.Core.Consultant.Contracts;
 using CalifornianHealth.Infrastructure.Database;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.Drawing.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

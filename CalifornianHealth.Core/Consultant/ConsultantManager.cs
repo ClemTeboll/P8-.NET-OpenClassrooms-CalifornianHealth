@@ -12,16 +12,16 @@ namespace CalifornianHealth.Core.Consultant
         {
             _consultantRepository = consultantRepository;
         }
-        public Task<IEnumerable<ConsultantOutputDto>> ListConsultants()
+        public IEnumerable<ConsultantOutputDto> ListConsultants()
         {
             var request = _consultantRepository.FetchConsultants();
 
-            return (Task<IEnumerable<ConsultantOutputDto>>)request.Select(request => new ConsultantOutputDto
+            return (request.Select(request => new ConsultantOutputDto
             (
                 request.FirstName,
                 request.LastName,
                 request.Speciality
-            ));
+            )));
         }
     }
 }

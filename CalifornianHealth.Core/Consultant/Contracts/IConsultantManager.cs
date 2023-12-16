@@ -2,6 +2,6 @@
 {
     public interface IConsultantManager
     {
-        Task<IEnumerable<ConsultantOutputDto>> ListConsultants();
+        IEnumerable<ConsultantOutputDto> ListConsultants();
     }
 }
