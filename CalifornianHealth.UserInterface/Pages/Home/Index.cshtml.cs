@@ -13,10 +13,9 @@ namespace CalifornianHealth.UserInterface.Pages
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-
         }
 
-        public async void OnGet()
+        public async Task OnGet()
         {
             var result = await _httpClient.GetAsync("https://localhost:44332/api/Consultant");
             result.EnsureSuccessStatusCode();
@@ -27,8 +26,7 @@ namespace CalifornianHealth.UserInterface.Pages
                 PropertyNameCaseInsensitive = true,
             };
 
-            _consultantOutputDto = JsonSerializer.Deserialize<List<ConsultantOutputDto>>(data,options);
-
+            _consultantOutputDto = JsonSerializer.Deserialize<List<ConsultantOutputDto>>(data, options)!;
         }
     }
 }
