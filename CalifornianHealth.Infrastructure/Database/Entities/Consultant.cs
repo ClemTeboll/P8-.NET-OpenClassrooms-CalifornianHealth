@@ -2,7 +2,7 @@
 
 namespace CalifornianHealth.Infrastructure.Database.Entities
 {
-    public partial class Consultant
+    public class Consultant
     {
         public int Id { get; set; }
         public required string FirstName { get; set; } = string.Empty;
