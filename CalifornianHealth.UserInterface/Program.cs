@@ -1,7 +1,10 @@
+using CalifornianHealth.UserInterface.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient<ApiClient>();
 
 var app = builder.Build();
 
