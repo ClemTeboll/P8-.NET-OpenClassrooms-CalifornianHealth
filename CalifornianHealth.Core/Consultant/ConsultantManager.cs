@@ -1,6 +1,5 @@
 ﻿using CalifornianHealth.Core.Consultant.Contracts;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
-using Microsoft.EntityFrameworkCore;
 
 namespace CalifornianHealth.Core.Consultant
 {

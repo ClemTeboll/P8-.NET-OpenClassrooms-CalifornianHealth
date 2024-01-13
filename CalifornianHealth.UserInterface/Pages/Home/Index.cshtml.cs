@@ -1,7 +1,5 @@
 ﻿using CalifornianHealth.UserInterface.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Text.Json;
 
 namespace CalifornianHealth.UserInterface.Pages
 {
@@ -19,16 +17,6 @@ namespace CalifornianHealth.UserInterface.Pages
 
         public async Task OnGet()
         {
-            //var result = await _httpClient.GetAsync("https://localhost:44332/api/Consultant");
-            //result.EnsureSuccessStatusCode();
-
-            //var data = await result.Content.ReadAsStreamAsync();
-            //var options = new JsonSerializerOptions()
-            //{
-            //    PropertyNameCaseInsensitive = true,
-            //};
-
-            //_consultantOutputDto = JsonSerializer.Deserialize<List<ConsultantOutputDto>>(data, options)!;
             _consultantOutputDto = await _apiClient.GetAllConsultants();
         }
     }
