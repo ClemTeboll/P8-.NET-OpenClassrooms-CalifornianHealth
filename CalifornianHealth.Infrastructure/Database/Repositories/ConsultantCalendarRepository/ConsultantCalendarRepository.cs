@@ -16,9 +16,9 @@ namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalen
             return _dbContext.ConsultantCalendars.ToList();
         }
 
-        public ConsultantCalendar FetchConsultantCalendarById(int id)
+        public IEnumerable<ConsultantCalendar> FetchConsultantCalendarById(int id)
         {
-            return _dbContext.ConsultantCalendars.Where(cc => cc.ConsultantId == id).FirstOrDefault();
+            return _dbContext.ConsultantCalendars.Where(cc => cc.ConsultantId == id).ToList();
         }
     }
 }

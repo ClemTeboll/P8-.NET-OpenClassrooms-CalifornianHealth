@@ -15,7 +15,17 @@ namespace CalifornianHealth.Core.ConsultantCalendar
         public List<ConsultantCalendarOutputDto> GetAllConsultantCalendars()
         {
             var request = _consultantCalendarRepository.FetchConsultantCalendar();
+            return CreateOutputList(request);
+        }
 
+        public List<ConsultantCalendarOutputDto> GetConsultantCalendarsById(int id)
+        {
+            var request = _consultantCalendarRepository.FetchConsultantCalendarById(id);
+            return CreateOutputList(request);
+        }
+
+        private List<ConsultantCalendarOutputDto> CreateOutputList(IEnumerable<Infrastructure.Database.Entities.ConsultantCalendar> request)
+        {
             return request.Select(x => new ConsultantCalendarOutputDto
             {
                 Id = x.Id,
@@ -23,19 +33,6 @@ namespace CalifornianHealth.Core.ConsultantCalendar
                 Date = x.Date,
                 Available = x.Available
             }).ToList();
-        }
-
-        public ConsultantCalendarOutputDto GetConsultantCalendarsById(int id)
-        {
-            var request = _consultantCalendarRepository.FetchConsultantCalendarById(id);
-
-            return new ConsultantCalendarOutputDto
-            {
-                Id = request.Id,
-                ConsultantId = request.ConsultantId,
-                Date = request.Date,
-                Available = request.Available
-            };
         }
     }
 }
