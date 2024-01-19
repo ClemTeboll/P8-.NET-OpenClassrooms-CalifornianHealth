@@ -15,12 +15,12 @@ namespace CalifornianHealth.Core.Consultant
         {
             var request = _consultantRepository.FetchConsultants();
 
-            return (request.Select(request => new ConsultantOutputDto
+            return request.Select(request => new ConsultantOutputDto
             (
                 request.FirstName,
                 request.LastName,
                 request.Speciality
-            )));
+            ));
         }
     }
 }

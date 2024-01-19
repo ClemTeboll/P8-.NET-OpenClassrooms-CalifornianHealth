@@ -2,6 +2,7 @@
 {
     public interface IConsultantCalendarManager
     {
-        IEnumerable<ConsultantCalendarOutputDto> GetConsultantCalendarsById(int id);
+        List<ConsultantCalendarOutputDto> GetAllConsultantCalendars();
+        ConsultantCalendarOutputDto GetConsultantCalendarsById(int id);
     }
 }

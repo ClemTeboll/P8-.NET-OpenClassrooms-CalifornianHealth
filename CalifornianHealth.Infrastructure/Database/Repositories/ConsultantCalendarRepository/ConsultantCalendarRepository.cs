@@ -1,6 +1,4 @@
 ﻿using CalifornianHealth.Infrastructure.Database.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
 
 namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository
 {
@@ -13,9 +11,14 @@ namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalen
             _dbContext = dbContext;
         }
 
-        public IEnumerable<ConsultantCalendar> FetchConsultantCalendar(int id)
+        public IEnumerable<ConsultantCalendar> FetchConsultantCalendar()
         {
-            return _dbContext.ConsultantCalendars.Where(cc => cc.ConsultantId == id).ToList();
+            return _dbContext.ConsultantCalendars.ToList();
+        }
+
+        public ConsultantCalendar FetchConsultantCalendarById(int id)
+        {
+            return _dbContext.ConsultantCalendars.Where(cc => cc.ConsultantId == id).FirstOrDefault();
         }
     }
 }

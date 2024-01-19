@@ -14,12 +14,17 @@ namespace CalifornianHealth.WebAPIs.Calendar.Controllers
             _manager = manager;
         }
 
-        //// GET: api/<ConsultantCalendarController>
-        //[HttpGet]
-        //public IEnumerable<ConsultantCalendarOutputDto> Get()
-        //{
-        //    return new List<ConsultantCalendarOutputDto>();
-        //}
+        // GET: api/<ConsultantCalendarController>
+        [HttpGet]
+        public async Task<ActionResult<List<ConsultantCalendarOutputDto>>> Get()
+        {
+            var consultantCalendarList = _manager.GetAllConsultantCalendars();
+
+            if (consultantCalendarList == null)
+                return NotFound("No consultant calendars found");
+
+            return Ok(consultantCalendarList);
+        }
 
         // GET api/<ConsultantCalendarController>/5
         [HttpGet("{id}")]
