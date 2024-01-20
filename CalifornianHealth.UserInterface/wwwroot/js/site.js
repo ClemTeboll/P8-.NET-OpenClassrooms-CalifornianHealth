@@ -1,4 +1,36 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿class ApiService {
 
-// Write your JavaScript code.
+    constructor(urlBase) {
+        this.urlBase = urlBase;
+    }
+
+    getAllConsultantCalendars = async () => {
+        let url = this.urlBase + 'api/ConsultantCalendar';
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                //Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
+            },
+        });
+
+        return response.json();
+    };
+
+    getOneConsultantCalendar = async (id) => {
+        let url = this.urlBase + `api/ConsultantCalendar/${id}`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                //Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
+            },
+        });
+
+        return response.json()
+    };
+}

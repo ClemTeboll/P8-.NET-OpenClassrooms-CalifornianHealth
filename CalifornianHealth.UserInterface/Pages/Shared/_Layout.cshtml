@@ -117,18 +117,48 @@
     <script src="~/js/jquery.easing.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/custom.js"></script>
-    <script src="~/contactform/contactform.js"></script>
+    @* <script src="~/contactform/contactform.js"></script> *@
     <script src="~/js/site.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
     <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', async function () {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                themeSystem: 'bootstrap',
                 initialView: 'dayGridMonth',
+                timeZone: 'local',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                events: await fetchEvents(),
+                eventClick: function (info) {
+                    console.log('Event clicked:', info.event);
+                },
             });
+
             calendar.render();
+
+            async function fetchEvents() {
+                const apiService = new ApiService('https://localhost:32778/');
+
+                try {
+                    const events = await apiService.getAllConsultantCalendars();
+                    console.log('Events from API:', events);
+
+                    return events.map(event => ({
+                        title: event.title,
+                        start: event.start,
+                        end: event.end,
+                    }));
+                } catch (error) {
+                    console.error('Error trying to log events from API', error);
+                    return [];
+                }
+            }
         });
+
 
     </script>
     @RenderSection("scripts", required: false)

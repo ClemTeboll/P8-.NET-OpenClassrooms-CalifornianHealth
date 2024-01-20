@@ -14,7 +14,7 @@ namespace CalifornianHealth.WebAPIs.Calendar.Controllers
             _manager = manager;
         }
 
-        // GET: api/<ConsultantCalendarController>
+        // GET: api/ConsultantCalendar
         [HttpGet]
         public async Task<ActionResult<List<ConsultantCalendarOutputDto>>> Get()
         {
