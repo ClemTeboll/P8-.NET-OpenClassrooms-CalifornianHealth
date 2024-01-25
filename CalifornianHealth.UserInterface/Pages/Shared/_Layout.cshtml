@@ -141,8 +141,8 @@
             calendar.render();
 
             async function fetchEvents() {
-                const apiService = new ApiService('https://localhost:32778/');
-
+                const apiService = new ApiService(`https://localhost:32770/`);
+                
                 try {
                     const events = await apiService.getAllConsultantCalendars();
                     console.log('Events from API:', events);
@@ -150,7 +150,7 @@
                     return events.map(event => ({
                         title: event.title,
                         start: event.start,
-                        end: event.end,
+                        end: event.end
                     }));
                 } catch (error) {
                     console.error('Error trying to log events from API', error);

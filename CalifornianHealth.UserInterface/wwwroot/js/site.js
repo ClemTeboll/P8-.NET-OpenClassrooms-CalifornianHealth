@@ -12,7 +12,13 @@
             headers: {
                 'Content-Type': 'application/json',
                 //Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                //'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                //'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+                //'Access-Control-Allow-Credentials': 'true',
+                //'Access-Control-Max-Age': '86400',
+                //'Access-Control-Expose-Headers': 'X-Auth-Token',
+                //'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
             },
         });
 

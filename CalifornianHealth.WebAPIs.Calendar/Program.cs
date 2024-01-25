@@ -51,7 +51,7 @@ builder.Services.AddCalifornianHealthContext(applicationConnectionString);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
-           policy.WithOrigins("http://localhost:7153")
+           policy.WithOrigins("https://localhost:7153")
                                  .AllowAnyMethod()
                                  .AllowAnyHeader());
                      
