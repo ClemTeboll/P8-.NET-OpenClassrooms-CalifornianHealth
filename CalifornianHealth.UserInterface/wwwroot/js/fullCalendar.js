@@ -1,39 +1,43 @@
 ﻿document.addEventListener('DOMContentLoaded', async function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                themeSystem: 'bootstrap',
-                initialView: 'dayGridMonth',
-                timeZone: 'local',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                },
-                events: await fetchEvents(),
-                eventClick: await bookAppointment(),
-            });
+    const consultantCalendar = await fetchEvents();
+    //const bookedAppointments = await bookAppointment(consultantCalendar.info);
 
-            calendar.render();
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        themeSystem: 'bootstrap',
+        initialView: 'dayGridMonth',
+        timeZone: 'local',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        },
+        events: consultantCalendar,
+        eventClick: await function bookAppointment(info) {
+            console.log("Event clicked" + JSON.stringify(info));
+        }
+    });
 
-            async function fetchEvents() {
-                const apiService = new ApiService(`https://localhost:32770/`);
-                
-                try {
-                    const events = await apiService.getAllConsultantCalendars();
-                    console.log('Events from API:', events);
+    if (consultantCalendar.length > 0)
+        calendar.render();
 
-                    return events.map(event => ({
-                        //title: event.title,
-                        start: event.date,
-                        //end: event.end
-                    }));
-                } catch (error) {
-                    console.error('Error trying to log events from API', error);
-                    return [];
-                }
-            }
+    async function fetchEvents() {
+        const apiService = new ApiService(`https://localhost:32778/`);
 
-            async function bookAppointment() {
+        try {
+            const events = await apiService.getAllConsultantCalendars();
 
-            }
-        });
+            return events.map(event => ({
+                title: "Appointment",
+                start: event.date
+            }));
+        } catch (error) {
+            console.error('Error trying to log events from API', error);
+            return [];
+        }
+    }
+
+    //async function bookAppointment(info) {
+    //    console.log("Event clicked" + JSON.stringify(info));
+    //}
+});
