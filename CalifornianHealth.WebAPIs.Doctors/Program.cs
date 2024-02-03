@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-//var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-//var dbPassword = Environment.GetEnvironmentVariable("SA_PASSWORD");
-var applicationConnectionString = "Server=tcp:192.168.1.45,8001;Database=CalifornianHealthDB;User=sa;Password=Passw0rd!;TrustServerCertificate=True";
+// Docker SQL Server Connection String
+//var applicationConnectionString = "Server=tcp:192.168.1.45,8001;Database=CalifornianHealthDB;User=sa;Password=Passw0rd!;TrustServerCertificate=True";
+
+var applicationConnectionString = "";
 
 builder.Services.AddCalifornianHealthContext(applicationConnectionString);
 
