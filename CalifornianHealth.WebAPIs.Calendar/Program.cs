@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Docker SQL Server Connection String
 //var applicationConnectionString = "Server=tcp:192.168.1.45,8001;Database=CalifornianHealthDB;User=sa;Password=Passw0rd!;TrustServerCertificate=True";
 
-var applicationConnectionString = "";
+var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
 
 builder.Services.AddCalifornianHealthContext(applicationConnectionString);
 builder.Services.AddCors(options =>
@@ -35,7 +35,7 @@ var app = builder.Build();
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
-    context.Database.Migrate();
+    //context.Database.Migrate();
 }
 
 if (app.Environment.IsDevelopment())

@@ -362,3 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /CalifornianHealth.UserInterface/Pages/_Import_from_mono_app
+/CalifornianHealth.WebAPIs.Calendar/appsettings.Local.json
+/CalifornianHealth.WebAPIs.Calendar/appsettings.Local.json
+/CalifornianHealth.WebAPIs.Doctors/appsettings.Local.json
+/CalifornianHealth.WebAPIs.Gateway/appsettings.Local.json

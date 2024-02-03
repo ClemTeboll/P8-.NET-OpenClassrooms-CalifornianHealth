@@ -22,7 +22,7 @@
         calendar.render();
 
     async function fetchEvents() {
-        const apiService = new ApiService(`https://localhost:32778/`);
+        const apiService = new ApiService(`https://localhost:5234/`);
 
         try {
             const events = await apiService.getAllConsultantCalendars();
@@ -38,7 +38,7 @@
     }
 
     async function bookAppointment(info) {
-        const apiService = new ApiService(`https://localhost:32778/`);
+        const apiService = new ApiService(`https://localhost:5234/`);
 
         try {
             const response = await apiService.bookAppointment(info);

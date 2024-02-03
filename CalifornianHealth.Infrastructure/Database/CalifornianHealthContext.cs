@@ -1,5 +1,4 @@
 ﻿using CalifornianHealth.Infrastructure.Database.Entities;
-using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace CalifornianHealth.Infrastructure.Database

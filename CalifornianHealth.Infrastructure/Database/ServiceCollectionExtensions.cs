@@ -1,9 +1,5 @@
-﻿using CalifornianHealth.Infrastructure.Database;
-using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 
 namespace CalifornianHealth.Infrastructure.Database;
 
