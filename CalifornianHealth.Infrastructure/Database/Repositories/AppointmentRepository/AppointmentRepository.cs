@@ -5,11 +5,16 @@ namespace CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepo
 {
     public class AppointmentRepository : IAppointmentRepository
     {
-        private DbSet<Appointment> _dbSet;
-        public AppointmentRepository(DbSet<Appointment> dbSet)
-        //: base(dbSet)
+        private readonly CalifornianHealthContext _dbContext;
+
+        public AppointmentRepository(CalifornianHealthContext dbContext)
         {
-            _dbSet = dbSet;
+            _dbContext = dbContext;
+        }
+
+        public int CreateAppointment(Appointment appointment)
+        {
+            return _dbContext.Appointments.Add(appointment).Entity.Id;
         }
     }
 }

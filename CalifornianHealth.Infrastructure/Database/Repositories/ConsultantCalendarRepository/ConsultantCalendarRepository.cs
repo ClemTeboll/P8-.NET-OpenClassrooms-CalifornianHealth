@@ -5,7 +5,7 @@ namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalen
     public class ConsultantCalendarRepository : IConsultantCalendarRepository
     {
         private readonly CalifornianHealthContext _dbContext;
-
+        
         public ConsultantCalendarRepository(CalifornianHealthContext dbContext)
         {
             _dbContext = dbContext;
@@ -19,6 +19,14 @@ namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalen
         public IEnumerable<ConsultantCalendar> FetchConsultantCalendarById(int id)
         {
             return _dbContext.ConsultantCalendars.Where(cc => cc.ConsultantId == id).ToList();
+        }
+
+        public int UpdateConsultantCalendar(ConsultantCalendar consultantCalendar)
+        {
+            var entityUpdated = _dbContext.ConsultantCalendars.Update(consultantCalendar);
+            _dbContext.SaveChanges();
+
+            return entityUpdated.Entity.Id;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CalifornianHealth.Core.ConsultantCalendar.Contracts;
+using CalifornianHealth.Infrastructure.Database.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalifornianHealth.WebAPIs.Calendar.Controllers
@@ -40,8 +41,17 @@ namespace CalifornianHealth.WebAPIs.Calendar.Controllers
 
         // POST api/<ConsultantCalendarController>
         [HttpPost]
-        public void Post([FromBody] int id)
+        public async Task<ActionResult<int>> Post([FromBody] AppointmentInputDto appointmentInput)
         {
+            if (appointmentInput == null)
+                return BadRequest("Invalid input");
+
+            var createdAppointmentId = _manager.BookAppointment(appointmentInput);
+
+            if (createdAppointmentId == 0)
+                return BadRequest("Appointment not created");
+
+            return Ok(createdAppointmentId);
         }
     }
 }

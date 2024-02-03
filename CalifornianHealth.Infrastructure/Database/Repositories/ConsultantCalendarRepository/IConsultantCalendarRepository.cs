@@ -6,5 +6,6 @@ namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalen
     {
         IEnumerable<ConsultantCalendar> FetchConsultantCalendar();
         IEnumerable<ConsultantCalendar> FetchConsultantCalendarById(int id);
+        int UpdateConsultantCalendar(ConsultantCalendar consultantCalendar);
     }
 }

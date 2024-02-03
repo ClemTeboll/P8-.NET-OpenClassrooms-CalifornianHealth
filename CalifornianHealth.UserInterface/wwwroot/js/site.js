@@ -11,7 +11,6 @@
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                //Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
         });
@@ -26,11 +25,25 @@
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                //Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
         });
 
         return response.json()
     };
+
+    bookAppointment = async (info) => {
+        let url = this.urlBase + 'api/ConsultantCalendar';
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(info)
+        });
+
+        return response.json();
+    }
 }

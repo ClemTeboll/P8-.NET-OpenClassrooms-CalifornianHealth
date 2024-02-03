@@ -37,7 +37,19 @@
         }
     }
 
-    //async function bookAppointment(info) {
-    //    console.log("Event clicked" + JSON.stringify(info));
-    //}
+    async function bookAppointment(info) {
+        const apiService = new ApiService(`https://localhost:32778/`);
+
+        try {
+            const response = await apiService.bookAppointment(info);
+
+            if (response.success) {
+                console.log("Appointment booked successfully");
+            } else {
+                console.log("Failed to book appointment");
+            }
+        } catch (error) {
+            console.error('Error trying to book appointment', error);
+        }
+    }
 });
