@@ -12,6 +12,14 @@ var builder = WebApplication.CreateBuilder(args);
 var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
 
 builder.Services.AddCalifornianHealthContext(applicationConnectionString);
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+           policy.WithOrigins("https://localhost:7153")
+                                 .AllowAnyMethod()
+                                 .AllowAnyHeader());
+
+});
 
 builder.Services.AddControllers();
 
@@ -35,10 +43,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

@@ -1,6 +1,7 @@
 using CalifornianHealth.Core.ConsultantCalendar;
 using CalifornianHealth.Core.ConsultantCalendar.Contracts;
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepository;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,8 +28,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
-
-
+builder.Services.AddTransient<IAppointmentRepository, AppointmentRepository>();
 
 var app = builder.Build();
 
@@ -44,8 +44,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
+
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

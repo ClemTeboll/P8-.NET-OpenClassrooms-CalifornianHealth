@@ -13,7 +13,7 @@ namespace CalifornianHealth.UserInterface.Services
 
         public async Task<List<ConsultantOutputDto>> GetAllConsultants()
         {
-            var result = await _httpClient.GetAsync("https://localhost:44332/api/Consultant");
+            var result = await _httpClient.GetAsync("https://localhost:7090/api/Consultant");
             result.EnsureSuccessStatusCode();
 
             var data = await result.Content.ReadAsStreamAsync();
@@ -27,7 +27,7 @@ namespace CalifornianHealth.UserInterface.Services
 
         public async Task<List<ConsultantCalendarOutputDto>> GetAllConsultantCalendars()
         {
-            var result = await _httpClient.GetAsync("https://localhost:44332/api/ConsultantCalendar");
+            var result = await _httpClient.GetAsync("https://localhost:7090/api/ConsultantCalendar");
             result.EnsureSuccessStatusCode();
 
             var data = await result.Content.ReadAsStreamAsync();

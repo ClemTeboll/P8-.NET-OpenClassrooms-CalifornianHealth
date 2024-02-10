@@ -10,9 +10,10 @@ namespace CalifornianHealth.Core.ConsultantCalendar
         private readonly IConsultantCalendarRepository _consultantCalendarRepository;
         private readonly IAppointmentRepository _appointmentRepository;
 
-        public ConsultantCalendarManager(IConsultantCalendarRepository consultantCalendarRepository)
+        public ConsultantCalendarManager(IConsultantCalendarRepository consultantCalendarRepository, IAppointmentRepository appointmentRepository)
         {
             _consultantCalendarRepository = consultantCalendarRepository;
+            _appointmentRepository = appointmentRepository;
         }
 
         public List<ConsultantCalendarOutputDto> GetAllConsultantCalendars()
@@ -30,7 +31,7 @@ namespace CalifornianHealth.Core.ConsultantCalendar
         public int BookAppointment(AppointmentInputDto appointmentInput)
         {
             var request = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId);
-            var consultantCalendar = request.FirstOrDefault(x => x.Date == appointmentInput.StartDateTime);
+            var consultantCalendar = request.FirstOrDefault(x => x.Id == appointmentInput.Id);
 
             if (consultantCalendar == null)
                 throw new Exception("Consultant not available on this date");
