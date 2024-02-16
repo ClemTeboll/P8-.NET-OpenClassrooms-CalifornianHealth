@@ -1,57 +1,55 @@
 ﻿using CalifornianHealth.Core.ConsultantCalendar.Contracts;
-using CalifornianHealth.Infrastructure.Database.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CalifornianHealth.WebAPIs.Calendar.Controllers
+namespace CalifornianHealth.WebAPIs.Calendar.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ConsultantCalendarController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ConsultantCalendarController : ControllerBase
+    private readonly IConsultantCalendarManager _manager;
+
+    public ConsultantCalendarController(IConsultantCalendarManager manager)
     {
-        private readonly IConsultantCalendarManager _manager;
+        _manager = manager;
+    }
 
-        public ConsultantCalendarController(IConsultantCalendarManager manager)
-        {
-            _manager = manager;
-        }
+    // GET: api/ConsultantCalendar
+    [HttpGet]
+    public async Task<ActionResult<List<ConsultantCalendarOutputDto>>> Get()
+    {
+        var consultantCalendarList = _manager.GetAllConsultantCalendars();
 
-        // GET: api/ConsultantCalendar
-        [HttpGet]
-        public async Task<ActionResult<List<ConsultantCalendarOutputDto>>> Get()
-        {
-            var consultantCalendarList = _manager.GetAllConsultantCalendars();
+        if (consultantCalendarList == null)
+            return NotFound("No consultant calendars found");
 
-            if (consultantCalendarList == null)
-                return NotFound("No consultant calendars found");
+        return Ok(consultantCalendarList);
+    }
 
-            return Ok(consultantCalendarList);
-        }
+    // GET api/<ConsultantCalendarController>/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ConsultantCalendarOutputDto>> Get(int id)
+    {
+        var consultantCalendar = _manager.GetConsultantCalendarsById(id);
 
-        // GET api/<ConsultantCalendarController>/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ConsultantCalendarOutputDto>> Get(int id)
-        {
-            var consultantCalendar = _manager.GetConsultantCalendarsById(id);
+        if (consultantCalendar == null)
+            return NotFound("No consultant calendars found");
 
-            if (consultantCalendar == null)
-                return NotFound("No consultant calendars found");
+        return Ok(consultantCalendar);
+    }
 
-            return Ok(consultantCalendar);
-        }
+    // POST api/<ConsultantCalendarController>
+    [HttpPost]
+    public async Task<ActionResult<int>> Post([FromBody] AppointmentInputDto appointmentInput)
+    {
+        if (appointmentInput == null)
+            return BadRequest("Invalid input");
 
-        // POST api/<ConsultantCalendarController>
-        [HttpPost]
-        public async Task<ActionResult<int>> Post([FromBody] AppointmentInputDto appointmentInput)
-        {
-            if (appointmentInput == null)
-                return BadRequest("Invalid input");
+        var createdAppointmentId = _manager.BookAppointment(appointmentInput);
 
-            var createdAppointmentId = _manager.BookAppointment(appointmentInput);
+        if (createdAppointmentId == 0)
+            return BadRequest("Appointment not created");
 
-            if (createdAppointmentId == 0)
-                return BadRequest("Appointment not created");
-
-            return Ok(createdAppointmentId);
-        }
+        return Ok(createdAppointmentId);
     }
 }
