@@ -1,6 +1,5 @@
-﻿namespace CalifornianHealth.Infrastructure.Database.Repositories.PatientRepository
+﻿namespace CalifornianHealth.Infrastructure.Database.Repositories.PatientRepository;
+
+public interface IPatientRepository
 {
-    public interface IPatientRepository
-    {
-    }
 }

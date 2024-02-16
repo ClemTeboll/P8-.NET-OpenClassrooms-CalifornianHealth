@@ -1,7 +1,6 @@
-﻿namespace CalifornianHealth.Core.Consultant.Contracts
+﻿namespace CalifornianHealth.Core.Consultant.Contracts;
+
+public interface IConsultantManager
 {
-    public interface IConsultantManager
-    {
-        IEnumerable<ConsultantOutputDto> ListConsultants();
-    }
+    IEnumerable<ConsultantOutputDto> ListConsultants();
 }

@@ -1,21 +1,19 @@
 ﻿using CalifornianHealth.Infrastructure.Database.Entities;
-using Microsoft.EntityFrameworkCore;
 
-namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository
+namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
+
+public class ConsultantRepository : IConsultantRepository
 {
-    public class ConsultantRepository : IConsultantRepository
+    private readonly CalifornianHealthContext _dbContext;
+
+    public ConsultantRepository(CalifornianHealthContext dbContext)
     {
-        private readonly CalifornianHealthContext _dbContext;
+        _dbContext = dbContext;
+    }
 
-        public ConsultantRepository(CalifornianHealthContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        public IEnumerable<Consultant> FetchConsultants()
-        {
-            var consultants = _dbContext.Consultants.ToList();
-            return consultants;
-        }
+    public IEnumerable<Consultant> FetchConsultants()
+    {
+        var consultants = _dbContext.Consultants.ToList();
+        return consultants;
     }
 }

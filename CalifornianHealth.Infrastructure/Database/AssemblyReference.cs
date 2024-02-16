@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
 
-namespace CalifornianHealth.Infrastructure.Database
+namespace CalifornianHealth.Infrastructure.Database;
+
+public static class AssemblyReference
 {
-    public static class AssemblyReference
-    {
-        public static Assembly Assembly = typeof(AssemblyReference).Assembly;
-    }
+    public static Assembly Assembly = typeof(AssemblyReference).Assembly;
 }

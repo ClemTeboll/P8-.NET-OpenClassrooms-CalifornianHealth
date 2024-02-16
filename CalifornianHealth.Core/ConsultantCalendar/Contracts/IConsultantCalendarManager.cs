@@ -1,11 +1,8 @@
-﻿using CalifornianHealth.Infrastructure.Database.Entities;
+﻿namespace CalifornianHealth.Core.ConsultantCalendar.Contracts;
 
-namespace CalifornianHealth.Core.ConsultantCalendar.Contracts
+public interface IConsultantCalendarManager
 {
-    public interface IConsultantCalendarManager
-    {
-        List<ConsultantCalendarOutputDto> GetAllConsultantCalendars();
-        List<ConsultantCalendarOutputDto> GetConsultantCalendarsById(int id);
-        int BookAppointment(AppointmentInputDto appointment);
-    }
+    List<ConsultantCalendarOutputDto> GetAllConsultantCalendars();
+    List<ConsultantCalendarOutputDto> GetConsultantCalendarsById(int id);
+    int BookAppointment(AppointmentInputDto appointment);
 }
