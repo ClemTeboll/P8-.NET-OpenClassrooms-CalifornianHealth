@@ -3,43 +3,42 @@ using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepositor
 using CalifornianHealth.Core.Consultant;
 using CalifornianHealth.Core.Consultant.Contracts;
 
-namespace CalifornianHealth.Tests.IntegrationTests.Consultant
+namespace CalifornianHealth.Tests.UnitTests.Consultant;
+
+public class GetConsultant
 {
-    public class GetConsultant
+    [Fact]
+    public void Should_Return_All_Consultants()
     {
-        [Fact]
-        public void Should_Return_All_Consultants()
+        // Arrange
+        Mock<IConsultantRepository> mockConsultantRepository = new Mock<IConsultantRepository>();
+        Mock<IConsultantManager> mockConsultantManager = new Mock<IConsultantManager>();
+
+        mockConsultantRepository.Setup(x => x.FetchConsultants()).Returns(new List<Infrastructure.Database.Entities.Consultant>
         {
-            // Arrange
-            Mock<IConsultantRepository> mockConsultantRepository = new Mock<IConsultantRepository>();
-            Mock<IConsultantManager> mockConsultantManager = new Mock<IConsultantManager>();
-
-            mockConsultantRepository.Setup(x => x.FetchConsultants()).Returns(new List<Infrastructure.Database.Entities.Consultant>
+            new Infrastructure.Database.Entities.Consultant
             {
-                new Infrastructure.Database.Entities.Consultant
-                {
-                    Id = 1,
-                    FirstName = "John",
-                    LastName = "Smith",
-                    Speciality = "Cardiology"
-                },
-                new Infrastructure.Database.Entities.Consultant
-                {
-                    Id = 2,
-                    FirstName = "Jane",
-                    LastName = "Doe",
-                    Speciality = "Neurology"
-                }
-            });
+                Id = 1,
+                FirstName = "John",
+                LastName = "Smith",
+                Speciality = "Cardiology"
+            },
+            new Infrastructure.Database.Entities.Consultant
+            {
+                Id = 2,
+                FirstName = "Jane",
+                LastName = "Doe",
+                Speciality = "Neurology"
+            }
+        });
 
-            var productManager = new ConsultantManager(mockConsultantRepository.Object);
+        var productManager = new ConsultantManager(mockConsultantRepository.Object);
 
-            // Act
-            var result = productManager.ListConsultants();
+        // Act
+        var result = productManager.ListConsultants();
 
-            // Assert
-            Assert.NotEmpty(result);
-            Assert.Equal(2, result.Count());
-        }
+        // Assert
+        Assert.NotEmpty(result);
+        Assert.Equal(2, result.Count());
     }
 }
