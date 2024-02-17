@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CalifornianHealth.Infrastructure\CalifornianHealth.Infrastructure.csproj" />
     <ProjectReference Include="..\CalifornianHealth.WebAPIs.Gateway\CalifornianHealth.WebAPIs.Gateway.csproj" />
   </ItemGroup>
 
