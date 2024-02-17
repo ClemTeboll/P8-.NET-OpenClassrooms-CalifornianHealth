@@ -11,5 +11,10 @@ public class AppointmentRepository : IAppointmentRepository
         _dbContext = dbContext;
     }
 
-    public int CreateAppointment(Appointment appointment) => _dbContext.Appointments.Add(appointment).Entity.Id;
+    public int CreateAppointment(Appointment appointment)
+    {
+        _dbContext.Appointments.Add(appointment);
+        _dbContext.SaveChanges();
+        return appointment.Id;
+    }
 }

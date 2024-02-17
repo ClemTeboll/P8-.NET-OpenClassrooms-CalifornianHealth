@@ -30,23 +30,25 @@ public class ConsultantCalendarManager : IConsultantCalendarManager
 
     public int BookAppointment(AppointmentInputDto appointmentInput)
     {
-        var request = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId);
-        var consultantCalendar = request.FirstOrDefault(x => x.Id == appointmentInput.Id);
+        var consultantCalendar = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId).FirstOrDefault(x => x.Id == appointmentInput.Id && x.Available);
 
-        if (consultantCalendar == null || !consultantCalendar.Available)
+        if (consultantCalendar == null)
             throw new Exception("Consultant not available on this date");
 
         consultantCalendar.Available = false;
         _consultantCalendarRepository.UpdateConsultantCalendar(consultantCalendar);
 
-        return _appointmentRepository.CreateAppointment(new Appointment
+        var appointment = new Appointment
         {
             ConsultantId = appointmentInput.ConsultantId,
             StartDateTime = appointmentInput.StartDateTime,
             EndDateTime = appointmentInput.EndDateTime,
             PatientId = appointmentInput.PatientId
-        });
+        };
+
+        return _appointmentRepository.CreateAppointment(appointment);
     }
+
 
     private List<ConsultantCalendarOutputDto> CreateOutputList(IEnumerable<Infrastructure.Database.Entities.ConsultantCalendar> request)
     {
