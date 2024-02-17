@@ -1,6 +1,4 @@
 ﻿document.addEventListener('DOMContentLoaded', async function () {
-    const consultantCalendar = await fetchEvents();
-
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         themeSystem: 'bootstrap',
@@ -11,8 +9,8 @@
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
-        events: consultantCalendar,
         eventClick: async function bookAppointment(info) {
+
             const payload = {
                 Id: Number.parseInt(info.event.id),
                 StartDateTime: new Date(info.event.start),
@@ -30,20 +28,31 @@
             }            
         }
     });
+     
+    calendar.render();
 
-    if (consultantCalendar.length > 0)
-        calendar.render();
+    // Event listener for dropdown change
+    document.getElementById('consultant').addEventListener('change', async function () {
+        const selectedConsultantIndex = parseInt(this.value);
+        console.log(selectedConsultantIndex);
 
-    async function fetchEvents() {
+        if (selectedConsultantIndex !== '-') {
+            const consultantId = selectedConsultantIndex; /
+            const consultantCalendar = await fetchEvents(consultantId);
+            calendar.removeAllEvents();
+            calendar.addEventSource(consultantCalendar);
+        }
+    });
+    async function fetchEvents(consultantId) {
         const apiService = new ApiService(`https://localhost:7207/`);
 
         try {
-            const events = await apiService.getAllConsultantCalendars();
+            const events = await apiService.getOneConsultantCalendar(consultantId);
 
             return events.map(event => ({
                 title: "Appointment",
                 start: event.date,
-                id:event.id
+                id: event.id
             }));
         } catch (error) {
             console.error('Error trying to log events from API', error);

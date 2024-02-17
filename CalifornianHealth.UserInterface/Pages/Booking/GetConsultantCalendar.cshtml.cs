@@ -9,11 +9,10 @@ namespace CalifornianHealth.UserInterface.Pages.Booking
         public ApiClient _apiClient;
         public List<ConsultantOutputDto> _consultantOutputDto;
 
-        public GetConsultantCalendarModel(ILogger<IndexModel> logger, ApiClient apiClient, List<ConsultantOutputDto> consultantOutputDto)
+        public GetConsultantCalendarModel(ILogger<IndexModel> logger, ApiClient apiClient)
         {
             _logger = logger;
             _apiClient = apiClient;
-            _consultantOutputDto = consultantOutputDto;
         }
 
         public async Task OnGet()
