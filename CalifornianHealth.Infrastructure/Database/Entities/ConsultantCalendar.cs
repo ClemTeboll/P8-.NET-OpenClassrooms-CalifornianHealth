@@ -15,6 +15,7 @@ public partial class ConsultantCalendar
         {
             c.HasKey(x => x.Id);
             c.ToTable(nameof(ConsultantCalendar));
+            c.Property(x => x.Available).IsConcurrencyToken();
         });
     }
 }

@@ -1,4 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', async function () {
+    let consultantId;
+
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         themeSystem: 'bootstrap',
@@ -15,7 +17,7 @@
                 Id: Number.parseInt(info.event.id),
                 StartDateTime: new Date(info.event.start),
                 EndDateTime: new Date(new Date(info.event.start).getTime() + 60 * 60 * 1000),
-                ConsultantId: 3,
+                ConsultantId: consultantId,
                 PatientId: 1, //TODO: Get from logged in user
             };
             const bookedAppointments = await bookAppointmentApi(payload);
@@ -34,10 +36,9 @@
     // Event listener for dropdown change
     document.getElementById('consultant').addEventListener('change', async function () {
         const selectedConsultantIndex = parseInt(this.value);
-        console.log(selectedConsultantIndex);
 
         if (selectedConsultantIndex !== '-') {
-            const consultantId = selectedConsultantIndex; /
+            consultantId = selectedConsultantIndex;
             const consultantCalendar = await fetchEvents(consultantId);
             calendar.removeAllEvents();
             calendar.addEventSource(consultantCalendar);

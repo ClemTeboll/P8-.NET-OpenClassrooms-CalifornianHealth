@@ -24,13 +24,13 @@ public class ConsultantCalendarManager : IConsultantCalendarManager
 
     public List<ConsultantCalendarOutputDto> GetConsultantCalendarsById(int id)
     {
-        var request = _consultantCalendarRepository.FetchConsultantCalendarById(id);
+        var request = _consultantCalendarRepository.FetchConsultantCalendarById(id).Where(x => x.Available);
         return CreateOutputList(request);
     }
 
     public int BookAppointment(AppointmentInputDto appointmentInput)
     {
-        var consultantCalendar = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId).FirstOrDefault(x => x.Id == appointmentInput.Id && x.Available);
+        var consultantCalendar = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId).FirstOrDefault(x => x.Available);
 
         if (consultantCalendar == null)
             throw new Exception("Consultant not available on this date");

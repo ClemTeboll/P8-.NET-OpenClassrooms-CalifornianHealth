@@ -27,9 +27,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CalifornianHealth.Infrastructure\CalifornianHealth.Infrastructure.csproj" />
     <ProjectReference Include="..\CalifornianHealth.WebAPIs.Gateway\CalifornianHealth.WebAPIs.Gateway.csproj" />
   </ItemGroup>
 
