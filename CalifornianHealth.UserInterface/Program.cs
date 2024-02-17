@@ -1,6 +1,11 @@
 using CalifornianHealth.UserInterface.Services;
+using CalifornianHealth.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
+
+//builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
 
 builder.Services.AddRazorPages();
 builder.Services.AddHttpClient<ApiClient>();

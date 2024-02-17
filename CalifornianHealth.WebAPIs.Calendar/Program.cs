@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
 
-builder.Services.AddCalifornianHealthContext(applicationConnectionString);
+builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
