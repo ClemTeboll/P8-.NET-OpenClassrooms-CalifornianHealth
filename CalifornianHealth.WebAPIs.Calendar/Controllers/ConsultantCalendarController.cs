@@ -42,9 +42,6 @@ public class ConsultantCalendarController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<int>> Post([FromBody] AppointmentInputDto appointmentInput)
     {
-        if (appointmentInput == null)
-            return BadRequest("Invalid input");
-
         var createdAppointmentId = _manager.BookAppointment(appointmentInput);
 
         if (createdAppointmentId == 0)

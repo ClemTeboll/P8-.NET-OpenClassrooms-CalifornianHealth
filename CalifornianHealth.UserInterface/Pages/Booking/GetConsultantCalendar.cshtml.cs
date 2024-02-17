@@ -9,16 +9,15 @@ namespace CalifornianHealth.UserInterface.Pages.Booking
         public ApiClient _apiClient;
         public List<ConsultantOutputDto> _consultantOutputDto;
 
-        public GetConsultantCalendarModel(ILogger<IndexModel> logger, ApiClient apiClient)
+        public GetConsultantCalendarModel(ILogger<IndexModel> logger, ApiClient apiClient, List<ConsultantOutputDto> consultantOutputDto)
         {
             _logger = logger;
             _apiClient = apiClient;
+            _consultantOutputDto = consultantOutputDto;
         }
 
         public async Task OnGet()
         {
-            // Should get ConsultantModelList to return
-            //var consultantCalendatList = GetAllConsultants();
             _consultantOutputDto = await _apiClient.GetAllConsultants();
         }
     }

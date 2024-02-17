@@ -1,6 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', async function () {
     const consultantCalendar = await fetchEvents();
-   // const bookedAppointments = await bookAppointment(consultantCalendar.info.event.id);
 
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -22,7 +21,13 @@
                 PatientId: 1, //TODO: Get from logged in user
             };
             const bookedAppointments = await bookAppointmentApi(payload);
-            console.log("Booked appointments" + JSON.stringify(bookedAppointments));
+
+            if (!bookedAppointments) {
+                alert("Appointment was not booked, please try again.")
+            }
+            else {
+                alert("Appointment was booked successfully.")
+            }            
         }
     });
 
@@ -49,15 +54,13 @@
     async function bookAppointmentApi(info) {
         const apiService = new ApiService(`https://localhost:7207/`);
 
-
-
         try {
             const response = await apiService.bookAppointment(info);
 
-            if (response.success) {
-                console.log("Appointment booked successfully");
+            if (response != null && response != undefined) {
+                return true;
             } else {
-                console.log("Failed to book appointment");
+                return false;
             }
         } catch (error) {
             console.error('Error trying to book appointment', error);
