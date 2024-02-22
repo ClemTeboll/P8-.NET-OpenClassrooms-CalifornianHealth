@@ -16,4 +16,15 @@ public static class ServiceCollectionExtensions
             options.EnableSensitiveDataLogging(true);
         });
     }
+
+    public static IServiceCollection AddIdentityContext(this IServiceCollection services, string connectionString)
+    {
+        if (string.IsNullOrEmpty(connectionString))
+            return services;
+
+        services.AddDbContext<IdentityContext>(options =>
+            options.UseSqlServer(connectionString, sqlOptions => sqlOptions.EnableRetryOnFailure()));
+
+        return services;
+    }
 }

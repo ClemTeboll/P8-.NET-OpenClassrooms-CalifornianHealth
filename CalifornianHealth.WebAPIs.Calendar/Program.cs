@@ -1,6 +1,7 @@
 using CalifornianHealth.Core.ConsultantCalendar;
 using CalifornianHealth.Core.ConsultantCalendar.Contracts;
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepository;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
 
 builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
+builder.Services.AddIdentityContext(applicationConnectionString!);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
@@ -26,13 +29,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddIdentityCore<Patient>()
+    .AddRoles<Role>()
+    .AddUserStore<IdentityContext>();
+
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
 builder.Services.AddTransient<IAppointmentRepository, AppointmentRepository>();
 
 var app = builder.Build();
 
-using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
+using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
     //context.Database.Migrate();

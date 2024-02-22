@@ -1,6 +1,7 @@
 using CalifornianHealth.Core.Consultant;
 using CalifornianHealth.Core.Consultant.Contracts;
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
 
 builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
+builder.Services.AddIdentityContext(applicationConnectionString!);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
@@ -25,6 +28,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddIdentityCore<Patient>()
+    .AddRoles<Role>()
+    .AddUserStore<IdentityContext>();
 
 builder.Services.AddTransient<IConsultantManager, ConsultantManager>();
 builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
