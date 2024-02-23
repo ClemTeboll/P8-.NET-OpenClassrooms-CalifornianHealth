@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace CalifornianHealth.Infrastructure.Database;
+namespace CalifornianHealth.Infrastructure.Database.Contexts;
 
 public class IdentityContextFactory : IDesignTimeDbContextFactory<IdentityContext>
 {

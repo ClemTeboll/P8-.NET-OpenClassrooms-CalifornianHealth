@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CalifornianHealth.Infrastructure.Database;
+namespace CalifornianHealth.Infrastructure.Database.Contexts;
 
 public class IdentityContext : IdentityDbContext
 {

@@ -1,6 +1,7 @@
 using CalifornianHealth.Core.ConsultantCalendar;
 using CalifornianHealth.Core.ConsultantCalendar.Contracts;
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepository;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;

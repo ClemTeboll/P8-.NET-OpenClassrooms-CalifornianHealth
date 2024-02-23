@@ -1,6 +1,7 @@
 using CalifornianHealth.Core.Consultant;
 using CalifornianHealth.Core.Consultant.Contracts;
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Microsoft.EntityFrameworkCore;

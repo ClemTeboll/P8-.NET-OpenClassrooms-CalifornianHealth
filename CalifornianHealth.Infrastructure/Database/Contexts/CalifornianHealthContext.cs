@@ -1,7 +1,7 @@
 ﻿using CalifornianHealth.Infrastructure.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CalifornianHealth.Infrastructure.Database;
+namespace CalifornianHealth.Infrastructure.Database.Contexts;
 
 public class CalifornianHealthContext : DbContext
 {
