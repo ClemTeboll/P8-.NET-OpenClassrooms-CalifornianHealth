@@ -10,10 +10,8 @@ public class IdentityContext : IdentityDbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        Patient.Configure(builder);
         base.OnModelCreating(builder);
+
+        builder.Entity<ApplicationUser>();
     }
-
-    public DbSet<Patient> Patients { get; set; }
-
 }

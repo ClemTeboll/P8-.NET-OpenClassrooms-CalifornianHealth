@@ -31,11 +31,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddIdentityCore<Patient>()
-    .AddRoles<Role>()
-    .AddUserStore<PatientStore>()
-    .AddRoleStore<RoleStore<Role, CalifornianHealthContext, Guid>>();
-
 builder.Services.AddTransient<IConsultantManager, ConsultantManager>();
 builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
