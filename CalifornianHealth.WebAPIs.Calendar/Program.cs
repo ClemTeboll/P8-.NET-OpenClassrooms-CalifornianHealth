@@ -5,6 +5,7 @@ using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepository;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,7 +33,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddIdentityCore<Patient>()
     .AddRoles<Role>()
-    .AddUserStore<IdentityContext>();
+    .AddUserStore<PatientStore>()
+    .AddRoleStore<RoleStore<Role, CalifornianHealthContext, Guid>>();
 
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
