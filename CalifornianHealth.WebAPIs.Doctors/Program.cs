@@ -1,8 +1,10 @@
 using CalifornianHealth.Core.Consultant;
 using CalifornianHealth.Core.Consultant.Contracts;
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,10 +29,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddIdentityCore<Patient>()
     .AddRoles<Role>()
-    .AddUserStore<IdentityContext>();
+    .AddUserStore<PatientStore>();
+
+builder.Services.AddScoped<IUserStore<Patient>, PatientStore>();
+builder.Services.AddScoped<IRoleStore<Role>, RoleStore>();
 
 builder.Services.AddTransient<IConsultantManager, ConsultantManager>();
 builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
+
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
-﻿using CalifornianHealth.Infrastructure.Database.Entities;
+﻿using CalifornianHealth.Infrastructure.Database.Contexts;
+using CalifornianHealth.Infrastructure.Database.Entities;
 
 namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;
 
