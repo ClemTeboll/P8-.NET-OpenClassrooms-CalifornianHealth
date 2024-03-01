@@ -38,8 +38,8 @@ services:
        - SA_DB_NAME=CalifornianHealth
        - SA_USER=sa
        - SA_PASSWORD=Passw0rd!
-    volumes:
-       - sqlserver_data:/var/opt/mssql
+    # volumes:
+    #    - sqlserver_data:/var/opt/mssql
     ports:
        - 1433:1433
 
