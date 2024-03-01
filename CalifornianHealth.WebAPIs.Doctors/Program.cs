@@ -1,8 +1,10 @@
 using CalifornianHealth.Core.Consultant;
 using CalifornianHealth.Core.Consultant.Contracts;
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,16 +31,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddIdentityCore<Patient>()
-    .AddRoles<Role>()
-    .AddUserStore<IdentityContext>();
-
 builder.Services.AddTransient<IConsultantManager, ConsultantManager>();
 builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
 var app = builder.Build();
 
-using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
+using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
     //context.Database.Migrate();

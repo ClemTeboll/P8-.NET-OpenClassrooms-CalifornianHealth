@@ -1,9 +1,11 @@
 using CalifornianHealth.Core.ConsultantCalendar;
 using CalifornianHealth.Core.ConsultantCalendar.Contracts;
 using CalifornianHealth.Infrastructure.Database;
+using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepository;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,10 +30,6 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddIdentityCore<Patient>()
-    .AddRoles<Role>()
-    .AddUserStore<IdentityContext>();
 
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
