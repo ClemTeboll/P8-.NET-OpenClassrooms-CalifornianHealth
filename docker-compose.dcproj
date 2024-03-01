@@ -10,8 +10,6 @@
     <DockerServiceName>californianhealth.webapis.gateway</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="CalifornianHealth.Infrastructure\Database\Store\PatientStore.cs" />
-    <None Include="CalifornianHealth.Infrastructure\Database\Store\RoleStore.cs" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>

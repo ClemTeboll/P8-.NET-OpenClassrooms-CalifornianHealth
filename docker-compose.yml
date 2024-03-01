@@ -38,9 +38,8 @@ services:
        - SA_DB_NAME=CalifornianHealth
        - SA_USER=sa
        - SA_PASSWORD=Passw0rd!
-    # volumes:
-    #    - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-    #    - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    volumes:
+       - sqlserver_data:/var/opt/mssql
     ports:
        - 1433:1433
 
