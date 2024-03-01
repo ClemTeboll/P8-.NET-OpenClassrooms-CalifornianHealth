@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddIdentityCore<Patient>()
     .AddRoles<Role>()
-    .AddUserStore<IdentityContext>();
+    .AddUserStore<PatientStore>();
 
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
@@ -41,8 +41,11 @@ var app = builder.Build();
 
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
 {
-    var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
-    //context.Database.Migrate();
+    var californianHealthContext = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
+    californianHealthContext.Database.Migrate();
+
+    var identityContext = serviceScope.ServiceProvider.GetRequiredService<IdentityContext>();
+    identityContext.Database.Migrate();
 }
 
 if (app.Environment.IsDevelopment())

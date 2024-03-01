@@ -7,9 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Docker SQL Server Connection String
-//var applicationConnectionString = "Server=tcp:192.168.1.45,8001;Database=CalifornianHealthDB;User=sa;Password=Passw0rd!;TrustServerCertificate=True";
-
 var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
 
 builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
@@ -17,11 +14,10 @@ builder.Services.AddIdentityContext(applicationConnectionString!);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", policy =>
-           policy.WithOrigins("https://localhost:7153")
-                                 .AllowAnyMethod()
-                                 .AllowAnyHeader());
-
+    options.AddPolicy("CorsPolicy", policy => policy.WithOrigins("https://localhost:7153")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+    );
 });
 
 builder.Services.AddControllers();
@@ -38,10 +34,13 @@ builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
 var app = builder.Build();
 
-using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
+using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
-    //context.Database.Migrate();
+    context.Database.Migrate();
+
+    var identityContext = serviceScope.ServiceProvider.GetRequiredService<IdentityContext>();
+    identityContext.Database.Migrate();
 }
 
 if (app.Environment.IsDevelopment())
