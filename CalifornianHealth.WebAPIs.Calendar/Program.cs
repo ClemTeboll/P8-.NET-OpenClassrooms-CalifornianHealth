@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddIdentityCore<Patient>()
     .AddRoles<Role>()
-    .AddUserStore<PatientStore>();
+    .AddUserStore<IdentityContext>();
 
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
