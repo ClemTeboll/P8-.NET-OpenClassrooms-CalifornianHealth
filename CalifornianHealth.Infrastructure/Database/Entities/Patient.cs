@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CalifornianHealth.Infrastructure.Database.Entities;
 
-public partial class Patient
+public partial class Patient : IdentityUser
 {
     public int Id { get; set; }
     public string FirstName { get; set; } = string.Empty;

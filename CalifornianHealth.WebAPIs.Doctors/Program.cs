@@ -4,6 +4,7 @@ using CalifornianHealth.Infrastructure.Database;
 using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,13 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddIdentityCore<Patient>()
+    .AddRoles<Role>()
+    .AddUserStore<PatientStore>();
+
+builder.Services.AddScoped<IUserStore<Patient>, PatientStore>();
+builder.Services.AddScoped<IRoleStore<Role>, RoleStore>();
 
 builder.Services.AddTransient<IConsultantManager, ConsultantManager>();
 builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
