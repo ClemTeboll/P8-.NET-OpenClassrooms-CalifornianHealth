@@ -47,12 +47,6 @@ public class ConsultantCalendarController : ControllerBase
     {
         _pool = new Semaphore(initialCount: 0, maximumCount: 1);
 
-        //for (int i = 1; i <= 5; i++)
-        //{
-        //    Thread t = new Thread(new ParameterizedThreadStart(Worker));
-        //    t.Start(i);
-        //}
-
         var createdAppointmentId = _manager.BookAppointment(appointmentInput);
 
         if (createdAppointmentId == 0)
@@ -61,14 +55,5 @@ public class ConsultantCalendarController : ControllerBase
         _pool.Release(releaseCount: 1);
 
         return Ok(createdAppointmentId);
-    }
-
-    private static void Worker(object num)
-    {
-        _pool.WaitOne();
-
-        int padding = Interlocked.Add(ref _padding, 100);
-
-        Thread.Sleep(1000 + padding);
     }
 }
