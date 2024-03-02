@@ -20,11 +20,10 @@ builder.Services.AddIdentityContext(applicationConnectionString!);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", policy =>
-           policy.WithOrigins("https://localhost:7153")
-                                 .AllowAnyMethod()
-                                 .AllowAnyHeader());
-
+    options.AddPolicy("CorsPolicy", policy => policy.WithOrigins("https://localhost:7153")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+    );
 });
 
 builder.Services.AddControllers();

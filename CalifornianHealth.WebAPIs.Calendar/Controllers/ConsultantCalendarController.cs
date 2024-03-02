@@ -8,10 +8,13 @@ namespace CalifornianHealth.WebAPIs.Calendar.Controllers;
 public class ConsultantCalendarController : ControllerBase
 {
     private readonly IConsultantCalendarManager _manager;
+    private static Semaphore _pool;
+    private static int _padding;
 
-    public ConsultantCalendarController(IConsultantCalendarManager manager)
+    public ConsultantCalendarController(IConsultantCalendarManager manager, Semaphore pool)
     {
         _manager = manager;
+        _pool = pool;
     }
 
     // GET: api/ConsultantCalendar
@@ -42,11 +45,30 @@ public class ConsultantCalendarController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<int>> Post([FromBody] AppointmentInputDto appointmentInput)
     {
+        _pool = new Semaphore(initialCount: 0, maximumCount: 1);
+
+        //for (int i = 1; i <= 5; i++)
+        //{
+        //    Thread t = new Thread(new ParameterizedThreadStart(Worker));
+        //    t.Start(i);
+        //}
+
         var createdAppointmentId = _manager.BookAppointment(appointmentInput);
 
         if (createdAppointmentId == 0)
             return BadRequest("Appointment not created");
 
+        _pool.Release(releaseCount: 1);
+
         return Ok(createdAppointmentId);
+    }
+
+    private static void Worker(object num)
+    {
+        _pool.WaitOne();
+
+        int padding = Interlocked.Add(ref _padding, 100);
+
+        Thread.Sleep(1000 + padding);
     }
 }

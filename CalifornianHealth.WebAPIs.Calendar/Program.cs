@@ -20,11 +20,10 @@ builder.Services.AddIdentityContext(applicationConnectionString!);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", policy =>
-           policy.WithOrigins("https://localhost:7153")
-                                 .AllowAnyMethod()
-                                 .AllowAnyHeader());
-                     
+    options.AddPolicy("CorsPolicy", policy => policy.WithOrigins("https://localhost:7153")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+    );                 
 });
 builder.Services.AddControllers();
 
@@ -37,7 +36,7 @@ builder.Services.AddIdentityCore<Patient>()
 
 builder.Services.AddScoped<IUserStore<Patient>, PatientStore>();
 builder.Services.AddScoped<IRoleStore<Role>, RoleStore>();
-
+builder.Services.AddScoped(semaphore => new Semaphore(0, 1));
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
 builder.Services.AddTransient<IAppointmentRepository, AppointmentRepository>();
