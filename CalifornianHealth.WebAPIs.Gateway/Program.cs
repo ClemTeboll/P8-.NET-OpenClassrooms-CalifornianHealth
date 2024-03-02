@@ -6,8 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("configuration.json", optional: false, reloadOnChange: true);
 
-//builder.Services.AddCalifornianHealthContext(applicationConnectionString);
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddOcelot(builder.Configuration);

@@ -372,3 +372,6 @@ FodyWeavers.xsd
 /CalifornianHealth.WebAPIs.Doctors/appsettings.Development.json
 /CalifornianHealth.WebAPIs.Gateway/appsettings.json
 /CalifornianHealth.WebAPIs.Gateway/appsettings.Development.json
+/CalifornianHealth.WebAPIs.Calendar/appsettings.json
+/CalifornianHealth.WebAPIs.Calendar/appsettings.Local.json
+/CalifornianHealth.WebAPIs.Calendar/appsettings.Development.json
