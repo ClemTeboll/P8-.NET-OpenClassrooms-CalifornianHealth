@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Text;
 
+namespace CalifornianHealth.Tests.IntegrationTests.ConsultantCalendartIntTests;
+
 public class ConsultantCalendarControllerTests
 {
     private readonly WebApplicationFactory<ConsultantCalendarController> _factory;
@@ -51,7 +53,11 @@ public class ConsultantCalendarControllerTests
         var client = _factory.CreateClient();
         var appointmentInput = new AppointmentInputDto
         {
-            // Set appointment input properties here
+            Id = 1,
+            StartDateTime = DateTime.Now,
+            EndDateTime = DateTime.Now.AddHours(1),
+            ConsultantId = 1,
+            PatientId = 1
         };
         var json = JsonConvert.SerializeObject(appointmentInput);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -76,7 +82,11 @@ public class ConsultantCalendarControllerTests
         var client = _factory.CreateClient();
         var appointmentInput = new AppointmentInputDto
         {
-            // Set appointment input properties here
+            Id = 1,
+            StartDateTime = DateTime.Now,
+            EndDateTime = DateTime.Now.AddHours(1),
+            ConsultantId = 1,
+            PatientId = 1
         };
         var json = JsonConvert.SerializeObject(appointmentInput);
         var content = new StringContent(json, Encoding.UTF8, "application/json");
