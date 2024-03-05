@@ -35,7 +35,7 @@ builder.Services.AddIdentityCore<Patient>()
 builder.Services.AddScoped<IUserStore<Patient>, PatientStore>();
 builder.Services.AddScoped<IRoleStore<Role>, RoleStore>();
 
-builder.Services.AddTransient<IConsultantManager, ConsultantManager>();
+builder.Services.AddScoped<IConsultantManager, ConsultantManager>();
 builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
 
