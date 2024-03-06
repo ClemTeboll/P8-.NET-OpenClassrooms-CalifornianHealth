@@ -1,35 +1,6 @@
 version: '3.4'
 
 services:
-  californianhealth.webapis.gateway:
-    container_name: californianhealth.webapis.gateway
-    image: ${DOCKER_REGISTRY-}californianhealthwebapisgateway
-    build:
-      context: .
-      dockerfile: CalifornianHealth.WebAPIs.Gateway/Dockerfile
-    ports:
-      - "5000:5000"
-      - "5001:5001"
-
-  californianhealth.webapis.doctors:
-    container_name: californianhealth.webapis.doctors
-    image: ${DOCKER_REGISTRY-}californianhealthwebapisdoctors
-    build:
-      context: .
-      dockerfile: CalifornianHealth.WebAPIs.Doctors/Dockerfile
-    ports:
-      - "5002:5002"
-      - "5003:5003"
-
-  californianhealth.webapis.calendar:
-    image: ${DOCKER_REGISTRY-}californianhealthwebapiscalendar
-    build:
-      context: .
-      dockerfile: CalifornianHealth.WebAPIs.Calendar/Dockerfile
-    ports:
-      - "5004:5004"
-      - "5005:5005"
-
   californianhealth.database:
     container_name: californianhealth.database
     image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
@@ -42,4 +13,32 @@ services:
     #    - sqlserver_data:/var/opt/mssql
     ports:
        - 1433:1433
+  
+  californianhealth.webapis.gateway:
+    container_name: californianhealth.webapis.gateway
+    image: ${DOCKER_REGISTRY-}californianhealthwebapisgateway
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Gateway/Dockerfile
+    ports:
+      - 5000:5000
+      - 5001:5001
 
+  californianhealth.webapis.doctors:
+    container_name: californianhealth.webapis.doctors
+    image: ${DOCKER_REGISTRY-}californianhealthwebapisdoctors
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Doctors/Dockerfile
+    ports:
+      - 5002:5002
+      - 5003:5003
+
+  californianhealth.webapis.calendar:
+    image: ${DOCKER_REGISTRY-}californianhealthwebapiscalendar
+    build:
+      context: .
+      dockerfile: CalifornianHealth.WebAPIs.Calendar/Dockerfile
+    ports:
+      - 5004:5004
+      - 5005:5005
