@@ -28,6 +28,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<IdentityContext>(options =>
+    options.UseSqlServer(applicationConnectionString));
+
+builder.Services.AddDbContext<CalifornianHealthContext>(options =>
+    options.UseSqlServer(applicationConnectionString));
+
 builder.Services.AddIdentityCore<Patient>()
     .AddRoles<Role>()
     .AddUserStore<PatientStore>();
