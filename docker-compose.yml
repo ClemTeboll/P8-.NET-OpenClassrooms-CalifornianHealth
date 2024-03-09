@@ -21,8 +21,11 @@ services:
       context: .
       dockerfile: CalifornianHealth.WebAPIs.Gateway/Dockerfile
     ports:
-      - 5000:5000
-      - 5001:5001
+      # - 5020:80
+      # - 7055:443
+      - 7055:80
+    depends_on:
+      - californianhealth.database
 
   californianhealth.webapis.doctors:
     container_name: californianhealth.webapis.doctors
@@ -31,8 +34,11 @@ services:
       context: .
       dockerfile: CalifornianHealth.WebAPIs.Doctors/Dockerfile
     ports:
-      - 5002:5002
-      - 5003:5003
+      # - 5013:80
+      # - 7090:443
+      - 7090:80
+    depends_on:
+      - californianhealth.database
 
   californianhealth.webapis.calendar:
     image: ${DOCKER_REGISTRY-}californianhealthwebapiscalendar
@@ -40,5 +46,8 @@ services:
       context: .
       dockerfile: CalifornianHealth.WebAPIs.Calendar/Dockerfile
     ports:
-      - 5004:5004
-      - 5005:5005
+      # - 5234:80
+      # - 7207:443
+      - 7207:80
+    depends_on:
+      - californianhealth.database

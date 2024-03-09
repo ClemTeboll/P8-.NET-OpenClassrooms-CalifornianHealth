@@ -49,10 +49,10 @@ var app = builder.Build();
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
 {
     var californianHealthContext = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
-    //californianHealthContext.Database.Migrate();
+    californianHealthContext.Database.Migrate();
 
     var identityContext = serviceScope.ServiceProvider.GetRequiredService<IdentityContext>();
-    //identityContext.Database.Migrate();
+    identityContext.Database.Migrate();
 }
 
 if (app.Environment.IsDevelopment())

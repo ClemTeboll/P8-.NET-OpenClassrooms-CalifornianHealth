@@ -17,8 +17,9 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 32776
+          "Host": "CalifornianHealth.WebAPIs.Doctors",
+          //"Port": 32776,
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/gateway/Consultant",
