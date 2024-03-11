@@ -27,10 +27,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<IdentityContext>(options =>
+builder.Services.AddDbContext<CalifornianHealthContext>(options =>
     options.UseSqlServer(applicationConnectionString));
 
-builder.Services.AddDbContext<CalifornianHealthContext>(options =>
+builder.Services.AddDbContext<IdentityContext>(options =>
     options.UseSqlServer(applicationConnectionString));
 
 builder.Services.AddIdentityCore<Patient>()
@@ -43,17 +43,16 @@ builder.Services.AddScoped<IRoleStore<Role>, RoleStore>();
 builder.Services.AddScoped<IConsultantManager, ConsultantManager>();
 builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
-
 var app = builder.Build();
 
-using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
-{
-    var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
-    context.Database.Migrate();
+//using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
+//{
+//    var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
+//    context.Database.Migrate();
 
-    var identityContext = serviceScope.ServiceProvider.GetRequiredService<IdentityContext>();
-    identityContext.Database.Migrate();
-}
+//    var identityContext = serviceScope.ServiceProvider.GetRequiredService<IdentityContext>();
+//    identityContext.Database.Migrate();
+//}
 
 if (app.Environment.IsDevelopment())
 {

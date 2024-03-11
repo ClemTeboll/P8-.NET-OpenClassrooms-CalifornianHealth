@@ -22,15 +22,16 @@ builder.Services.AddCors(options =>
         .AllowAnyHeader()
     );                 
 });
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<IdentityContext>(options =>
+builder.Services.AddDbContext<CalifornianHealthContext>(options =>
     options.UseSqlServer(applicationConnectionString));
 
-builder.Services.AddDbContext<CalifornianHealthContext>(options =>
+builder.Services.AddDbContext<IdentityContext>(options =>
     options.UseSqlServer(applicationConnectionString));
 
 builder.Services.AddIdentityCore<Patient>()
@@ -39,6 +40,7 @@ builder.Services.AddIdentityCore<Patient>()
 
 builder.Services.AddScoped<IUserStore<Patient>, PatientStore>();
 builder.Services.AddScoped<IRoleStore<Role>, RoleStore>();
+
 builder.Services.AddScoped(semaphore => new Semaphore(0, 1));
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
