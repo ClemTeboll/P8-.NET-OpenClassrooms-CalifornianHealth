@@ -5,14 +5,13 @@ services:
     container_name: californianhealth.database
     image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
     environment:
-       - ACCEPT_EULA=Y
-    #   - SA_DB_NAME=CalifornianHealth
-    #   - SA_USER=sa
-    #   - SA_PASSWORD=Passw0rd!
-    # volumes:
-    #    - sqlserver_data:/var/opt/mssql
+      - ACCEPT_EULA=Y
+      # - SA_DB_NAME=CalifornianHealth
+      # - SA_USER=sa
+      # - SA_PASSWORD=Passw0rd!
+      - ConnectionStrings__ApplicationConnection=Data Source=californianhealth.database,8001;Initial Catalog=CalifornianHealth;User Id=sa;Password=Passw0rd!;Trusted_Connection=true;TrustServerCertificate=True;
     ports:
-       - 8001:1433
+      - 8001:1433
   
   californianhealth.webapis.gateway:
     container_name: californianhealth.webapis.gateway
@@ -39,6 +38,7 @@ services:
       - californianhealth.database
 
   californianhealth.webapis.calendar:
+    container_name: californianhealth.webapis.calendar
     image: ${DOCKER_REGISTRY-}californianhealthwebapiscalendar
     build:
       context: .
