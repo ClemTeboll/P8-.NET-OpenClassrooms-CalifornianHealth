@@ -6,9 +6,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-preview-ubuntu-22.04
     environment:
        - ACCEPT_EULA=Y
-    #   - SA_DB_NAME=CalifornianHealth
-    #   - SA_USER=sa
-    #   - SA_PASSWORD=Passw0rd!
+       - MSSQL_SA_PASSWORD=Passw0rd!
     # volumes:
     #    - sqlserver_data:/var/opt/mssql
     ports:
