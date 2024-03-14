@@ -6,14 +6,12 @@ using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepository;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
-
-builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
-builder.Services.AddIdentityContext(applicationConnectionString!);
 
 builder.Services.AddCors(options =>
 {
@@ -28,11 +26,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<CalifornianHealthContext>(options =>
-    options.UseSqlServer(applicationConnectionString));
+builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
+builder.Services.AddIdentityContext(applicationConnectionString!);
 
-builder.Services.AddDbContext<IdentityContext>(options =>
-    options.UseSqlServer(applicationConnectionString));
+builder.Services.AddDbContext<CalifornianHealthContext>(options => options.UseSqlServer(applicationConnectionString));
+builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(applicationConnectionString));
 
 builder.Services.AddIdentityCore<Patient>()
     .AddRoles<Role>()

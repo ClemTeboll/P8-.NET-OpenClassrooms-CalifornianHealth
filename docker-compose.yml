@@ -10,7 +10,7 @@ services:
     # volumes:
     #    - sqlserver_data:/var/opt/mssql
     ports:
-       - 8001:1433
+      - 8001:1433
   
   californianhealth.webapis.gateway:
     container_name: californianhealth.webapis.gateway
@@ -37,6 +37,7 @@ services:
       - californianhealth.database
 
   californianhealth.webapis.calendar:
+    container_name: californianhealth.webapis.calendar
     image: ${DOCKER_REGISTRY-}californianhealthwebapiscalendar
     build:
       context: .
