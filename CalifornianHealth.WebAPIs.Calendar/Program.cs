@@ -8,6 +8,7 @@ using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarR
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +25,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi.Calendar", Version = "v1" });
+});
 
 builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
 builder.Services.AddIdentityContext(applicationConnectionString!);
@@ -58,7 +62,10 @@ using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.Creat
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 }
 
 app.UseCors("CorsPolicy");
