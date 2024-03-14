@@ -16,10 +16,15 @@ var applicationConnectionString = builder.Configuration.GetConnectionString("App
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", policy => policy.WithOrigins("https://localhost:7153")
-        .AllowAnyMethod()
-        .AllowAnyHeader()
-    );                 
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:5234")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        policy.WithOrigins("https://localhost:7153")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });                 
 });
 
 builder.Services.AddControllers();
