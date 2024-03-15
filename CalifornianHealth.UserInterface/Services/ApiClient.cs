@@ -15,14 +15,7 @@ public class ApiClient
 
     private static string GetBaseUrl(IWebHostEnvironment env)
     {
-        if (env.IsDevelopment())
-        {
-            return "http://localhost:5013";
-        }
-        else
-        {
-            return "https://localhost:7090";
-        }
+        return env.IsDevelopment() ? "http://host.docker.internal:5013" : "https://host.docker.internal:7090";
     }
 
     public async Task<List<ConsultantOutputDto>> GetAllConsultants()
@@ -42,6 +35,7 @@ public class ApiClient
     public async Task<List<ConsultantCalendarOutputDto>> GetAllConsultantCalendars()
     {
         var result = await _httpClient.GetAsync($"{_baseUrl}/api/ConsultantCalendar");
+
         result.EnsureSuccessStatusCode();
 
         var data = await result.Content.ReadAsStreamAsync();

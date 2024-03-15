@@ -6,7 +6,8 @@
       "serviceActions": {
         "californianhealth.webapis.calendar": "StartDebugging",
         "californianhealth.webapis.gateway": "StartDebugging",
-        "californianhealth.webapis.doctors": "StartDebugging"
+        "californianhealth.webapis.doctors": "StartDebugging",
+        "californianhealth.userinterface": "StartDebugging"
       }
     }
   }

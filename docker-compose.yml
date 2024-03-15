@@ -47,3 +47,18 @@ services:
       - 7207:443
     depends_on:
       - californianhealth.database
+  
+  californianhealth.userinterface:
+    container_name: UserInterface
+    image: ${DOCKER_REGISTRY-}californianhealthuserinterface
+    build:
+      context: .
+      dockerfile: CalifornianHealth.UserInterface/Dockerfile
+    ports:
+      - 5110:80
+      - 7153:443
+    depends_on:
+      - californianhealth.webapis.gateway
+      - californianhealth.webapis.doctors
+      - californianhealth.webapis.calendar
+
