@@ -7,9 +7,9 @@ public class ApiClient
     private readonly HttpClient _httpClient;
     private readonly string _baseUrl;
 
-    public ApiClient(HttpClient httpClient, IWebHostEnvironment env)
+    public ApiClient(IHttpClientFactory httpClientFactory, IWebHostEnvironment env)
     {
-        _httpClient = httpClient;
+        _httpClient = httpClientFactory.CreateClient("DisableSslValidationHttpClient");
         _baseUrl = GetBaseUrl(env);
     }
 
