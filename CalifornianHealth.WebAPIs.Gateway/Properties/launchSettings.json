@@ -18,7 +18,7 @@
         "ASPNETCORE_ENVIRONMENT": "Local"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7055;http://localhost:5020"
+      "applicationUrl": "https://localhost:7055"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -27,7 +27,31 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Local"
       }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "publishAllPorts": true,
+      "useSSL": true,
+      "containerName": "californianhealth-webapis-doctors",
+      "containerEnv": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
+    //"Docker": {
+    //  "commandName": "Docker",
+    //  "launchBrowser": true,
+    //  "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+    //  "environmentVariables": {
+    //    "ASPNETCORE_URLS": "https://+:443;http://+:80"
+    //  },
+    //  "publishAllPorts": true,
+    //  "useSSL": true
+    //}
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {

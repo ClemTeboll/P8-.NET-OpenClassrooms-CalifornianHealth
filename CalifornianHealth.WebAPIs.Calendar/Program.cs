@@ -6,26 +6,40 @@ using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepository;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var applicationConnectionString = builder.Configuration.GetConnectionString("ApplicationConnection");
 
-builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
-builder.Services.AddIdentityContext(applicationConnectionString!);
-
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", policy => policy.WithOrigins("https://localhost:7153")
-        .AllowAnyMethod()
-        .AllowAnyHeader()
-    );                 
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:5234")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        policy.WithOrigins("https://localhost:7153")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });                 
 });
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi.Calendar", Version = "v1" });
+});
+
+builder.Services.AddCalifornianHealthContext(applicationConnectionString!);
+builder.Services.AddIdentityContext(applicationConnectionString!);
+
+builder.Services.AddDbContext<CalifornianHealthContext>(options => options.UseSqlServer(applicationConnectionString));
+builder.Services.AddDbContext<IdentityContext>(options => options.UseSqlServer(applicationConnectionString));
 
 builder.Services.AddIdentityCore<Patient>()
     .AddRoles<Role>()
@@ -33,6 +47,7 @@ builder.Services.AddIdentityCore<Patient>()
 
 builder.Services.AddScoped<IUserStore<Patient>, PatientStore>();
 builder.Services.AddScoped<IRoleStore<Role>, RoleStore>();
+
 builder.Services.AddScoped(semaphore => new Semaphore(0, 1));
 builder.Services.AddTransient<IConsultantCalendarManager, ConsultantCalendarManager>();
 builder.Services.AddScoped<IConsultantCalendarRepository, ConsultantCalendarRepository>();
@@ -42,13 +57,20 @@ var app = builder.Build();
 
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
 {
-    var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
+    var californianHealthContext = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
+    californianHealthContext.Database.Migrate();
+
+    var identityContext = serviceScope.ServiceProvider.GetRequiredService<IdentityContext>();
+    identityContext.Database.Migrate();
 }
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 }
 
 app.UseCors("CorsPolicy");

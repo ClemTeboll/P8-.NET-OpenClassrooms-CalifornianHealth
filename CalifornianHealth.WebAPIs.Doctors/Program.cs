@@ -5,8 +5,8 @@ using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,16 +17,30 @@ builder.Services.AddIdentityContext(applicationConnectionString!);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", policy => policy.WithOrigins("https://localhost:7153")
-        .AllowAnyMethod()
-        .AllowAnyHeader()
-    );
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:5013")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        policy.WithOrigins("https://localhost:7153")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
 });
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAp.Doctors", Version = "v1" });
+});
+
+builder.Services.AddDbContext<CalifornianHealthContext>(options =>
+    options.UseSqlServer(applicationConnectionString));
+
+builder.Services.AddDbContext<IdentityContext>(options =>
+    options.UseSqlServer(applicationConnectionString));
 
 builder.Services.AddIdentityCore<Patient>()
     .AddRoles<Role>()
@@ -40,16 +54,15 @@ builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
 var app = builder.Build();
 
-using (var serviceScope = app.Services.GetService<IServiceScopeFactory>()!.CreateScope())
-{
-    var context = serviceScope.ServiceProvider.GetRequiredService<CalifornianHealthContext>();
-    //context.Database.Migrate();
-}
+
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 }
 
 app.UseCors("CorsPolicy");

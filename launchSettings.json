@@ -5,8 +5,9 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "californianhealth.webapis.calendar": "StartDebugging",
-        //"californianhealth.webapis.doctors": "StartDebugging",
-        //"californianhealth.webapis.gateway": "StartDebugging"
+        "californianhealth.webapis.gateway": "StartDebugging",
+        "californianhealth.webapis.doctors": "StartDebugging",
+        "californianhealth.userinterface": "StartDebugging"
       }
     }
   }
