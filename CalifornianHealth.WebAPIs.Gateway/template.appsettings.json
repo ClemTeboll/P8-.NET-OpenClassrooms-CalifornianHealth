@@ -7,6 +7,6 @@
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "ApplicationConnection": "Server=californianhealth.database,1433;Database=CalifornianHealth;User Id=sa; Password=Passw0rd!;TrustServerCertificate=True"
+    "ApplicationConnection": "Server=;Database=;Trusted_Connection=;TrustServerCertificate=;"
   }
 }

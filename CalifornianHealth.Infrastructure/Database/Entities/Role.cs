@@ -2,4 +2,4 @@
 
 namespace CalifornianHealth.Infrastructure.Database.Entities;
 
-public class Role : IdentityRole<Guid> { }
+public class Role : IdentityRole<int> { }

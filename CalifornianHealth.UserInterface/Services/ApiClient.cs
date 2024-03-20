@@ -5,15 +5,22 @@ namespace CalifornianHealth.UserInterface.Services;
 public class ApiClient
 {
     private readonly HttpClient _httpClient;
+    private readonly string _baseUrl;
 
-    public ApiClient(HttpClient httpClient)
+    public ApiClient(IHttpClientFactory httpClientFactory, IWebHostEnvironment env)
     {
-        _httpClient = httpClient;
+        _httpClient = httpClientFactory.CreateClient("DisableSslValidationHttpClient");
+        _baseUrl = GetBaseUrl(env);
+    }
+
+    private static string GetBaseUrl(IWebHostEnvironment env)
+    {
+        return env.IsDevelopment() ? "http://host.docker.internal:5013" : "https://host.docker.internal:7090";
     }
 
     public async Task<List<ConsultantOutputDto>> GetAllConsultants()
     {
-        var result = await _httpClient.GetAsync("https://localhost:7090/api/Consultant");
+        var result = await _httpClient.GetAsync($"{_baseUrl}/api/Consultant");
         result.EnsureSuccessStatusCode();
 
         var data = await result.Content.ReadAsStreamAsync();
@@ -27,7 +34,8 @@ public class ApiClient
 
     public async Task<List<ConsultantCalendarOutputDto>> GetAllConsultantCalendars()
     {
-        var result = await _httpClient.GetAsync("https://localhost:7090/api/ConsultantCalendar");
+        var result = await _httpClient.GetAsync($"{_baseUrl}/api/ConsultantCalendar");
+
         result.EnsureSuccessStatusCode();
 
         var data = await result.Content.ReadAsStreamAsync();

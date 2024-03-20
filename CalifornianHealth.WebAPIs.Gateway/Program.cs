@@ -1,7 +1,3 @@
-using CalifornianHealth.Core.Consultant.Contracts;
-using CalifornianHealth.Core.Consultant;
-using CalifornianHealth.Infrastructure.Database;
-using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
