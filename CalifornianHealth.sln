@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8D3A5E70
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Tests.UnitTests", "CalifornianHealth.Tests.UnitTests\CalifornianHealth.Tests.UnitTests.csproj", "{D9A9B937-559B-4534-8B95-84521E32467C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Tests.IntegrationTests", "CalifornianHealth.Tests.IntegrationTests\CalifornianHealth.Tests.IntegrationTests.csproj", "{E0043E0B-6D3B-4768-8D31-586523AB279E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.UserInterface", "CalifornianHealth.UserInterface\CalifornianHealth.UserInterface.csproj", "{176D2E63-04A9-4E60-8331-0BE3AA7F2205}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.Core", "CalifornianHealth.Core\CalifornianHealth.Core.csproj", "{104E0BDC-32DC-4E96-9B6A-66AF6B30D09D}"
@@ -37,10 +35,6 @@ Global
 		{D9A9B937-559B-4534-8B95-84521E32467C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9A9B937-559B-4534-8B95-84521E32467C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9A9B937-559B-4534-8B95-84521E32467C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0043E0B-6D3B-4768-8D31-586523AB279E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0043E0B-6D3B-4768-8D31-586523AB279E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0043E0B-6D3B-4768-8D31-586523AB279E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0043E0B-6D3B-4768-8D31-586523AB279E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{176D2E63-04A9-4E60-8331-0BE3AA7F2205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{176D2E63-04A9-4E60-8331-0BE3AA7F2205}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{176D2E63-04A9-4E60-8331-0BE3AA7F2205}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,7 +69,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D9A9B937-559B-4534-8B95-84521E32467C} = {8D3A5E70-59D1-4D11-B48D-68E57B64C02C}
-		{E0043E0B-6D3B-4768-8D31-586523AB279E} = {8D3A5E70-59D1-4D11-B48D-68E57B64C02C}
 		{176D2E63-04A9-4E60-8331-0BE3AA7F2205} = {A3EC9AD0-7D91-4538-BE70-4F58BA9EAB51}
 		{104E0BDC-32DC-4E96-9B6A-66AF6B30D09D} = {A3EC9AD0-7D91-4538-BE70-4F58BA9EAB51}
 		{C9978E5F-9F8F-4C88-9697-E91A1CD9923C} = {A3EC9AD0-7D91-4538-BE70-4F58BA9EAB51}
