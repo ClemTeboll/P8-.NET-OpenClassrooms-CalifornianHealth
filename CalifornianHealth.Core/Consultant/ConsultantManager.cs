@@ -11,6 +11,7 @@ public class ConsultantManager : IConsultantManager
     {
         _consultantRepository = consultantRepository;
     }
+
     public IEnumerable<ConsultantOutputDto> ListConsultants()
     {
         var request = _consultantRepository.FetchConsultants();

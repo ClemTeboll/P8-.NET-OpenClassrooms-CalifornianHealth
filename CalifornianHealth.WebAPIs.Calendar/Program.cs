@@ -5,6 +5,7 @@ using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.AppointmentRepository;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalendarRepository;
+using CalifornianHealth.WebAPIs.Calendar.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -79,7 +80,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
-
+app.MapConsultantCalendarEndpoints();
 
 app.Run();
