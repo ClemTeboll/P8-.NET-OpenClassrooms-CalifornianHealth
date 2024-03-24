@@ -7,6 +7,7 @@ using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepositor
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using CalifornianHealth.WebAPIs.Doctors.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,8 +55,6 @@ builder.Services.AddScoped<IConsultantRepository, ConsultantRepository>();
 
 var app = builder.Build();
 
-
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -68,6 +67,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.MapControllers();
+
+app.MapConsultantEndpoints();
 
 app.Run();

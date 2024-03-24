@@ -1,7 +1,7 @@
 ﻿using CalifornianHealth.Core.ConsultantCalendar.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CalifornianHealth.WebAPIs.Calendar.Controllers;
+namespace CalifornianHealth.WebAPIs.Calendar.Endpoints;
 
 public static class ConsultantCalendarEndpoints
 {
