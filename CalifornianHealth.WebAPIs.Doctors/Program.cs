@@ -4,10 +4,10 @@ using CalifornianHealth.Infrastructure.Database;
 using CalifornianHealth.Infrastructure.Database.Contexts;
 using CalifornianHealth.Infrastructure.Database.Entities;
 using CalifornianHealth.Infrastructure.Database.Repositories.ConsultantRepository;
+using CalifornianHealth.WebAPIs.Doctors.Endpoints;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using CalifornianHealth.WebAPIs.Doctors.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 

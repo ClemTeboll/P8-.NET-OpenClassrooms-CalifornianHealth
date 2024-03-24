@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalifornianHealth.WebAPIs.G
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8AEF8024-1402-482F-90DD-8285BE9ABBB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.Tests.IntegrationTests", "..\CalifornianHealth.Tests.IntegrationTests\CalifornianHealth.Tests.IntegrationTests.csproj", "{A73B9C12-DC2E-428A-9EDE-6D823375AF5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalifornianHealth.Tests.IntegrationTests", "CalifornianHealth.Tests.IntegrationTests\CalifornianHealth.Tests.IntegrationTests.csproj", "{F4D1E5D1-BAB4-4229-804C-03543DA72D2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +65,10 @@ Global
 		{8AEF8024-1402-482F-90DD-8285BE9ABBB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AEF8024-1402-482F-90DD-8285BE9ABBB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AEF8024-1402-482F-90DD-8285BE9ABBB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A73B9C12-DC2E-428A-9EDE-6D823375AF5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A73B9C12-DC2E-428A-9EDE-6D823375AF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A73B9C12-DC2E-428A-9EDE-6D823375AF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A73B9C12-DC2E-428A-9EDE-6D823375AF5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D1E5D1-BAB4-4229-804C-03543DA72D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D1E5D1-BAB4-4229-804C-03543DA72D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D1E5D1-BAB4-4229-804C-03543DA72D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D1E5D1-BAB4-4229-804C-03543DA72D2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,7 +82,7 @@ Global
 		{37F65A14-E283-44FD-BE59-03B4EC0C7B9B} = {05FBA53A-0013-46B2-AC35-7144429DC097}
 		{6B93B658-66EE-42AB-95C9-479255957DB0} = {05FBA53A-0013-46B2-AC35-7144429DC097}
 		{1AF4EF85-43F9-45F6-9539-CA008E1C5925} = {05FBA53A-0013-46B2-AC35-7144429DC097}
-		{A73B9C12-DC2E-428A-9EDE-6D823375AF5B} = {8D3A5E70-59D1-4D11-B48D-68E57B64C02C}
+		{F4D1E5D1-BAB4-4229-804C-03543DA72D2C} = {8D3A5E70-59D1-4D11-B48D-68E57B64C02C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A12D2C9E-125B-4296-96DB-93DC31E2A9F8}
