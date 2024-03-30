@@ -82,3 +82,5 @@ app.UseAuthorization();
 app.MapConsultantCalendarEndpoints();
 
 app.Run();
+
+public partial class Program { }
