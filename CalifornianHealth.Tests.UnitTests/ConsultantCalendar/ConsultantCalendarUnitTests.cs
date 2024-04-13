@@ -58,8 +58,8 @@ public class ConsultantCalendarManagerTests
         int testId = 1;
         var consultantCalendars = new List<ConsultantCalendar>
             {
-                new ConsultantCalendar { Id = testId, ConsultantId = 1, Date = DateTime.Now, Available = true },
-                new ConsultantCalendar { Id = testId, ConsultantId = 2, Date = DateTime.Now.AddDays(1), Available = false }
+                new() { Id = testId, ConsultantId = 1, Date = DateTime.Now, Available = true },
+                new() { Id = testId, ConsultantId = 2, Date = DateTime.Now.AddDays(1), Available = false }
             };
 
         _mockedConsultantCalendarRepository.Setup(repo => repo.FetchConsultantCalendarById(testId)).Returns(consultantCalendars);
@@ -68,7 +68,7 @@ public class ConsultantCalendarManagerTests
         var result = _manager.GetConsultantCalendarsById(testId);
 
         // Assert
-        Assert.Equal(consultantCalendars.Count, result.Count);
+        Assert.Equal(testId, result[0].Id);
         _mockedConsultantCalendarRepository.Verify(repo => repo.FetchConsultantCalendarById(testId), Times.Once);
     }
 
