@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.16">
       <PrivateAssets>all</PrivateAssets>
@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CalifornianHealth.Core\CalifornianHealth.Core.csproj" />
     <ProjectReference Include="..\CalifornianHealth.Infrastructure\CalifornianHealth.Infrastructure.csproj" />
+    <ProjectReference Include="..\CalifornianHealth.WebAPIs.Calendar\CalifornianHealth.WebAPIs.Calendar.csproj" />
   </ItemGroup>
 
 </Project>

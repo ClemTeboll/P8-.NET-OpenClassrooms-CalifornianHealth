@@ -27,3 +27,5 @@ app.MapControllers();
 app.UseOcelot().Wait();
 
 app.Run();
+
+public partial class Program { }
