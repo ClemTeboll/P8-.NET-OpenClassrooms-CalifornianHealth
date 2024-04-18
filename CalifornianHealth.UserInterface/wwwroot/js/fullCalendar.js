@@ -18,7 +18,7 @@
                 StartDateTime: new Date(info.event.start),
                 EndDateTime: new Date(new Date(info.event.start).getTime() + 60 * 60 * 1000),
                 ConsultantId: consultantId,
-                PatientId: 1, //TODO: Get from logged in user
+                PatientId: currentUserId
             };
             const bookedAppointments = await bookAppointmentApi(payload);
 

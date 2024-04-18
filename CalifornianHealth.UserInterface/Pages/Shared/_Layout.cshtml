@@ -113,6 +113,11 @@
         </div>
     </footer>
     <!--/ footer-->
+    @{
+        @using System.Security.Claims
+
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    }
 
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/jquery.easing.min.js"></script>
@@ -121,6 +126,9 @@
     @* <script src="~/contactform/contactform.js"></script> *@
     <script src="~/js/site.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script>
+        let currentUserId = @Html.Raw(Json.Serialize(userId));
+    </script>
     <script src="~/js/fullCalendar.js"></script>
     @RenderSection("scripts", required: false)
 </body>
