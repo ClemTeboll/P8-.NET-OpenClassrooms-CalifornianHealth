@@ -3,6 +3,6 @@
 public interface IConsultantCalendarManager
 {
     List<ConsultantCalendarOutputDto> GetAllConsultantCalendars();
-    List<ConsultantCalendarOutputDto> GetConsultantCalendarsById(int id);
+    ConsultantCalendarOutputDto GetConsultantCalendarsById(int id);
     int BookAppointment(AppointmentInputDto appointment);
 }

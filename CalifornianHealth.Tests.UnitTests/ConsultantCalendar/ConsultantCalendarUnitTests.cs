@@ -25,18 +25,18 @@ public class ConsultantCalendarManagerTests
         // Arrange
         var consultantCalendars = new List<ConsultantCalendar>
         {
-            new() 
-            { 
-                Id = 1, 
-                ConsultantId = 1, 
-                
-                Date = DateTime.Now, Available = true 
+            new()
+            {
+                Id = 1,
+                ConsultantId = 1,
+
+                Date = DateTime.Now, Available = true
             },
-            new() 
-            { 
-                Id = 2, 
-                ConsultantId = 2, 
-                Date = DateTime.Now.AddDays(1), 
+            new()
+            {
+                Id = 2,
+                ConsultantId = 2,
+                Date = DateTime.Now.AddDays(1),
                 Available = false
             }
         };
@@ -56,11 +56,10 @@ public class ConsultantCalendarManagerTests
     {
         // Arrange
         int testId = 1;
-        var consultantCalendars = new List<ConsultantCalendar>
-            {
-                new() { Id = testId, ConsultantId = 1, Date = DateTime.Now, Available = true },
-                new() { Id = testId, ConsultantId = 2, Date = DateTime.Now.AddDays(1), Available = false }
-            };
+        var consultantCalendars = new ConsultantCalendar() 
+        { 
+            Id = testId, ConsultantId = 1, Date = DateTime.Now, Available = true 
+        };
 
         _mockedConsultantCalendarRepository.Setup(repo => repo.FetchConsultantCalendarById(testId)).Returns(consultantCalendars);
 
@@ -68,7 +67,7 @@ public class ConsultantCalendarManagerTests
         var result = _manager.GetConsultantCalendarsById(testId);
 
         // Assert
-        Assert.Equal(testId, result[0].Id);
+        Assert.Equal(testId, result.Id);
         _mockedConsultantCalendarRepository.Verify(repo => repo.FetchConsultantCalendarById(testId), Times.Once);
     }
 
@@ -92,7 +91,7 @@ public class ConsultantCalendarManagerTests
             Available = true
         };
 
-        _mockedConsultantCalendarRepository.Setup(repo => repo.FetchConsultantCalendarById(appointmentInput.ConsultantId)).Returns(new List<ConsultantCalendar> { consultantCalendar });
+        _mockedConsultantCalendarRepository.Setup(repo => repo.FetchConsultantCalendarById(appointmentInput.ConsultantId)).Returns(consultantCalendar);
         _mockedAppointmentRepository.Setup(repo => repo.CreateAppointment(It.IsAny<Appointment>())).Returns(1);
 
         // Act

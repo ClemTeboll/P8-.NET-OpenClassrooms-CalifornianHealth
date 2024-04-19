@@ -22,20 +22,30 @@ public class ConsultantCalendarManager : IConsultantCalendarManager
         return CreateOutputList(request);
     }
 
-    public List<ConsultantCalendarOutputDto> GetConsultantCalendarsById(int id)
+    public ConsultantCalendarOutputDto GetConsultantCalendarsById(int id)
     {
-        var request = _consultantCalendarRepository.FetchConsultantCalendarById(id).Where(x => x.Available);
-        return CreateOutputList(request);
+        var request = _consultantCalendarRepository.FetchConsultantCalendarById(id);
+
+        ConsultantCalendarOutputDto consultantCalendarOutputDto = new()
+        {
+            Id = request.Id,
+            ConsultantId = request.ConsultantId,
+            Date = request.Date,
+            Available = request.Available
+        };
+
+        return consultantCalendarOutputDto;
     }
 
     public int BookAppointment(AppointmentInputDto appointmentInput)
     {
-        var consultantCalendar = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId).FirstOrDefault(x => x.Available);
+        var consultantCalendar = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId);
 
-        if (consultantCalendar == null)
+        if (consultantCalendar == null || !consultantCalendar.Available)
             throw new Exception("Consultant not available on this date");
 
         consultantCalendar.Available = false;
+
         _consultantCalendarRepository.UpdateConsultantCalendar(consultantCalendar);
 
         var appointment = new Appointment
@@ -50,7 +60,7 @@ public class ConsultantCalendarManager : IConsultantCalendarManager
     }
 
 
-    private List<ConsultantCalendarOutputDto> CreateOutputList(IEnumerable<Infrastructure.Database.Entities.ConsultantCalendar> request)
+    private static List<ConsultantCalendarOutputDto> CreateOutputList(IEnumerable<Infrastructure.Database.Entities.ConsultantCalendar> request)
     {
         return request.Select(x => new ConsultantCalendarOutputDto
         {
