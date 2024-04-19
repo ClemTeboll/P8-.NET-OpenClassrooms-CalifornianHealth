@@ -1,6 +1,5 @@
 ﻿using CalifornianHealth.Core.ConsultantCalendar.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 
 namespace CalifornianHealth.WebAPIs.Calendar.Endpoints;
 
