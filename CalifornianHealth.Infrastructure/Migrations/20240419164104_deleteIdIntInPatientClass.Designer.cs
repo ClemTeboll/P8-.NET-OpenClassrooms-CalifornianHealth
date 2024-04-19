@@ -4,6 +4,7 @@ using CalifornianHealth.Infrastructure.Database.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalifornianHealth.Infrastructure.Migrations
 {
     [DbContext(typeof(CalifornianHealthContext))]
-    partial class CalifornianHealthContextModelSnapshot : ModelSnapshot
+    [Migration("20240419164104_deleteIdIntInPatientClass")]
+    partial class deleteIdIntInPatientClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,9 +41,9 @@ namespace CalifornianHealth.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PatientId")
+                    b.Property<int?>("PatientId")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("StartDateTime")
                         .IsConcurrencyToken()

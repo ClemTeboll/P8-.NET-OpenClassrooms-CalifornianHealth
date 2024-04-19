@@ -25,18 +25,18 @@ public class ConsultantCalendarManagerTests
         // Arrange
         var consultantCalendars = new List<ConsultantCalendar>
         {
-            new ConsultantCalendar 
-            { 
-                Id = 1, 
-                ConsultantId = 1, 
-                
-                Date = DateTime.Now, Available = true 
+            new()
+            {
+                Id = 1,
+                ConsultantId = 1,
+
+                Date = DateTime.Now, Available = true
             },
-            new ConsultantCalendar 
-            { 
-                Id = 2, 
-                ConsultantId = 2, 
-                Date = DateTime.Now.AddDays(1), 
+            new()
+            {
+                Id = 2,
+                ConsultantId = 2,
+                Date = DateTime.Now.AddDays(1),
                 Available = false
             }
         };
@@ -56,20 +56,26 @@ public class ConsultantCalendarManagerTests
     {
         // Arrange
         int testId = 1;
-        var consultantCalendars = new List<ConsultantCalendar>
+        List<ConsultantCalendar> consultantCalendars = new()
+        {
+            new()
             {
-                new() { Id = testId, ConsultantId = 1, Date = DateTime.Now, Available = true },
-                new() { Id = testId, ConsultantId = 2, Date = DateTime.Now.AddDays(1), Available = false }
-            };
+                Id = testId,
+                ConsultantId = 1,
+                Date = DateTime.Now,
+                Available = true
+            }
+        };
+            
 
-        _mockedConsultantCalendarRepository.Setup(repo => repo.FetchConsultantCalendarById(testId)).Returns(consultantCalendars);
+        _mockedConsultantCalendarRepository.Setup(repo => repo.FetchConsultantCalendarsByConsultantId(testId)).Returns(consultantCalendars);
 
         // Act
-        var result = _manager.GetConsultantCalendarsById(testId);
+        var result = _manager.GetAllConsultantCalendarsByConsultantId(testId);
 
         // Assert
         Assert.Equal(testId, result[0].Id);
-        _mockedConsultantCalendarRepository.Verify(repo => repo.FetchConsultantCalendarById(testId), Times.Once);
+        _mockedConsultantCalendarRepository.Verify(repo => repo.FetchConsultantCalendarsByConsultantId(testId), Times.Once);
     }
 
     [Fact]
@@ -81,7 +87,7 @@ public class ConsultantCalendarManagerTests
             ConsultantId = 1,
             StartDateTime = DateTime.Now,
             EndDateTime = DateTime.Now.AddHours(1),
-            PatientId = 1
+            PatientId = "V3ryC0mpl1C@tedHa$h"
         };
 
         var consultantCalendar = new ConsultantCalendar
@@ -92,7 +98,7 @@ public class ConsultantCalendarManagerTests
             Available = true
         };
 
-        _mockedConsultantCalendarRepository.Setup(repo => repo.FetchConsultantCalendarById(appointmentInput.ConsultantId)).Returns(new List<ConsultantCalendar> { consultantCalendar });
+        _mockedConsultantCalendarRepository.Setup(repo => repo.FetchOneConsultantCalendarById(appointmentInput.ConsultantId)).Returns(consultantCalendar);
         _mockedAppointmentRepository.Setup(repo => repo.CreateAppointment(It.IsAny<Appointment>())).Returns(1);
 
         // Act
@@ -100,7 +106,7 @@ public class ConsultantCalendarManagerTests
 
         // Assert
         Assert.Equal(1, result);
-        _mockedConsultantCalendarRepository.Verify(repo => repo.FetchConsultantCalendarById(appointmentInput.ConsultantId), Times.Once);
+        _mockedConsultantCalendarRepository.Verify(repo => repo.FetchOneConsultantCalendarById(appointmentInput.ConsultantId), Times.Once);
         _mockedConsultantCalendarRepository.Verify(repo => repo.UpdateConsultantCalendar(It.IsAny<ConsultantCalendar>()), Times.Once);
         _mockedAppointmentRepository.Verify(repo => repo.CreateAppointment(It.IsAny<Appointment>()), Times.Once);
     }

@@ -17,9 +17,14 @@ public class ConsultantCalendarRepository : IConsultantCalendarRepository
         return _dbContext.ConsultantCalendars.ToList();
     }
 
-    public IEnumerable<ConsultantCalendar> FetchConsultantCalendarById(int id)
+    public IEnumerable<ConsultantCalendar> FetchConsultantCalendarsByConsultantId(int id)
     {
         return _dbContext.ConsultantCalendars.Where(cc => cc.ConsultantId == id).ToList();
+    }
+
+    public ConsultantCalendar FetchOneConsultantCalendarById(int id)
+    {
+        return _dbContext.ConsultantCalendars.Where(cc => cc.Id == id).FirstOrDefault()!;
     }
 
     public int UpdateConsultantCalendar(ConsultantCalendar consultantCalendar)

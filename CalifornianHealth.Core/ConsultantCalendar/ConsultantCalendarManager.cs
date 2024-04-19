@@ -19,23 +19,26 @@ public class ConsultantCalendarManager : IConsultantCalendarManager
     public List<ConsultantCalendarOutputDto> GetAllConsultantCalendars()
     {
         var request = _consultantCalendarRepository.FetchConsultantCalendar();
+
         return CreateOutputList(request);
     }
 
-    public List<ConsultantCalendarOutputDto> GetConsultantCalendarsById(int id)
+    public List<ConsultantCalendarOutputDto> GetAllConsultantCalendarsByConsultantId(int id)
     {
-        var request = _consultantCalendarRepository.FetchConsultantCalendarById(id).Where(x => x.Available);
+        var request = _consultantCalendarRepository.FetchConsultantCalendarsByConsultantId(id).Where(x => x.Available);
+
         return CreateOutputList(request);
     }
 
     public int BookAppointment(AppointmentInputDto appointmentInput)
     {
-        var consultantCalendar = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId).FirstOrDefault(x => x.Available);
+        var consultantCalendar = _consultantCalendarRepository.FetchOneConsultantCalendarById(appointmentInput.ConsultantId);
 
-        if (consultantCalendar == null)
+        if (consultantCalendar == null || !consultantCalendar.Available)
             throw new Exception("Consultant not available on this date");
 
         consultantCalendar.Available = false;
+
         _consultantCalendarRepository.UpdateConsultantCalendar(consultantCalendar);
 
         var appointment = new Appointment
@@ -50,7 +53,7 @@ public class ConsultantCalendarManager : IConsultantCalendarManager
     }
 
 
-    private List<ConsultantCalendarOutputDto> CreateOutputList(IEnumerable<Infrastructure.Database.Entities.ConsultantCalendar> request)
+    private static List<ConsultantCalendarOutputDto> CreateOutputList(IEnumerable<Infrastructure.Database.Entities.ConsultantCalendar> request)
     {
         return request.Select(x => new ConsultantCalendarOutputDto
         {
