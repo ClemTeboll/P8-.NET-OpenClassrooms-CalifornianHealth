@@ -16,14 +16,14 @@ public class GetConsultant
 
         mockConsultantRepository.Setup(x => x.FetchConsultants()).Returns(new List<Infrastructure.Database.Entities.Consultant>
         {
-            new Infrastructure.Database.Entities.Consultant
+            new()
             {
                 Id = 1,
                 FirstName = "John",
                 LastName = "Smith",
                 Speciality = "Cardiology"
             },
-            new Infrastructure.Database.Entities.Consultant
+            new()
             {
                 Id = 2,
                 FirstName = "Jane",

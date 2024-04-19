@@ -25,14 +25,14 @@ public class ConsultantCalendarManagerTests
         // Arrange
         var consultantCalendars = new List<ConsultantCalendar>
         {
-            new ConsultantCalendar 
+            new() 
             { 
                 Id = 1, 
                 ConsultantId = 1, 
                 
                 Date = DateTime.Now, Available = true 
             },
-            new ConsultantCalendar 
+            new() 
             { 
                 Id = 2, 
                 ConsultantId = 2, 
