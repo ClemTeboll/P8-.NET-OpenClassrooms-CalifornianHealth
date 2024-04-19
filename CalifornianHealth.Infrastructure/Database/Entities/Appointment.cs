@@ -13,7 +13,7 @@ public partial class Appointment
     [ConcurrencyCheck]
     public int? ConsultantId { get; set; }
     [ConcurrencyCheck]
-    public int? PatientId { get; set; }
+    public string? PatientId { get; set; }
 
     public static void Configure(ModelBuilder modelBuilder)
     {

@@ -4,5 +4,5 @@
         DateTime StartDateTime,
         DateTime EndDateTime,
         int ConsultantId,
-        int PatientId
+        string PatientId
     );

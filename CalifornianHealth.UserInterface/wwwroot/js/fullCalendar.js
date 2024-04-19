@@ -48,7 +48,7 @@
         const apiService = new ApiService(`https://localhost:7207/`);
 
         try {
-            const events = await apiService.getOneConsultantCalendar(consultantId);
+            const events = await apiService.getAllConsultantCalendarsByConsultantId(consultantId);
 
             return events.map(event => ({
                 title: "Appointment",

@@ -5,6 +5,7 @@ namespace CalifornianHealth.Infrastructure.Database.Repositories.ConsultantCalen
 public interface IConsultantCalendarRepository
 {
     IEnumerable<ConsultantCalendar> FetchConsultantCalendar();
-    ConsultantCalendar FetchConsultantCalendarById(int id);
+    IEnumerable<ConsultantCalendar> FetchConsultantCalendarsByConsultantId(int id);
+    ConsultantCalendar FetchOneConsultantCalendarById(int id);
     int UpdateConsultantCalendar(ConsultantCalendar consultantCalendar);
 }

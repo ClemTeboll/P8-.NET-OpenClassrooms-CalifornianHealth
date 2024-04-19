@@ -19,27 +19,20 @@ public class ConsultantCalendarManager : IConsultantCalendarManager
     public List<ConsultantCalendarOutputDto> GetAllConsultantCalendars()
     {
         var request = _consultantCalendarRepository.FetchConsultantCalendar();
+
         return CreateOutputList(request);
     }
 
-    public ConsultantCalendarOutputDto GetConsultantCalendarsById(int id)
+    public List<ConsultantCalendarOutputDto> GetAllConsultantCalendarsByConsultantId(int id)
     {
-        var request = _consultantCalendarRepository.FetchConsultantCalendarById(id);
+        var request = _consultantCalendarRepository.FetchConsultantCalendarsByConsultantId(id).Where(x => x.Available);
 
-        ConsultantCalendarOutputDto consultantCalendarOutputDto = new()
-        {
-            Id = request.Id,
-            ConsultantId = request.ConsultantId,
-            Date = request.Date,
-            Available = request.Available
-        };
-
-        return consultantCalendarOutputDto;
+        return CreateOutputList(request);
     }
 
     public int BookAppointment(AppointmentInputDto appointmentInput)
     {
-        var consultantCalendar = _consultantCalendarRepository.FetchConsultantCalendarById(appointmentInput.ConsultantId);
+        var consultantCalendar = _consultantCalendarRepository.FetchOneConsultantCalendarById(appointmentInput.ConsultantId);
 
         if (consultantCalendar == null || !consultantCalendar.Available)
             throw new Exception("Consultant not available on this date");

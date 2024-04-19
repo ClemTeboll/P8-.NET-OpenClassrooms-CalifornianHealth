@@ -4,6 +4,7 @@ using CalifornianHealth.Infrastructure.Database.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalifornianHealth.Infrastructure.Migrations
 {
     [DbContext(typeof(CalifornianHealthContext))]
-    partial class CalifornianHealthContextModelSnapshot : ModelSnapshot
+    [Migration("20240419210110_UpdatePatientIdInAppointmentClass")]
+    partial class UpdatePatientIdInAppointmentClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
