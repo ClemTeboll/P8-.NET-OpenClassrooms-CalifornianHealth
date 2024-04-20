@@ -18,7 +18,6 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "CalifornianHealth.WebAPIs.Doctors",
-          //"Port": 32776,
           "Port": 80
         }
       ],

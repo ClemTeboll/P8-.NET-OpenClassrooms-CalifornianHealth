@@ -31,16 +31,6 @@ public static class ConsultantCalendarEndpoints
 
         return Results.Ok(consultantCalendarList);
     }
-    
-    //public static async Task<IResult> GetConsultantCalendarById(IConsultantCalendarManager manager, int id)
-    //{
-    //    var consultantCalendar = manager.GetOneConsultantCalendarsById(id);
-
-    //    if (consultantCalendar == null)
-    //        return Results.NotFound("No consultant calendars found");
-
-    //    return Results.Ok(consultantCalendar);
-    //}
 
     public static async Task<IResult> PostAppointment(IConsultantCalendarManager manager, [FromBody]AppointmentInputDto appointmentInput)
     {
