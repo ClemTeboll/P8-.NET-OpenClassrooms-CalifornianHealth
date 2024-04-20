@@ -20,6 +20,9 @@
                 ConsultantId: consultantId,
                 PatientId: currentUserId
             };
+
+            console.log(payload);
+
             const bookedAppointments = await bookAppointmentApi(payload);
 
             if (!bookedAppointments) {

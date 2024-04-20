@@ -32,7 +32,7 @@ public class ConsultantCalendarManager : IConsultantCalendarManager
 
     public int BookAppointment(AppointmentInputDto appointmentInput)
     {
-        var consultantCalendar = _consultantCalendarRepository.FetchOneConsultantCalendarById(appointmentInput.ConsultantId);
+        var consultantCalendar = _consultantCalendarRepository.FetchOneConsultantCalendarById(appointmentInput.Id);
 
         if (consultantCalendar == null || !consultantCalendar.Available)
             throw new Exception("Consultant not available on this date");
