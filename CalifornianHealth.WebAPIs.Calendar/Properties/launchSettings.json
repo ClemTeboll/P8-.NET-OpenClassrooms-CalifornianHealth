@@ -28,20 +28,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    //"Docker": {
-    //  "commandName": "Docker",
-    //  "launchBrowser": true,
-    //  "launchUrl": "swagger",
-    //  "environmentVariables": {
-    //    "ASPNETCORE_ENVIRONMENT": "Development"
-    //  },
-    //  "publishAllPorts": true,
-    //  "useSSL": true,
-    //  "containerName": "californianhealth-webapis-calendar",
-    //  "containerEnv": {
-    //    "ASPNETCORE_ENVIRONMENT": "Development"
-    //  }
-    //}
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,

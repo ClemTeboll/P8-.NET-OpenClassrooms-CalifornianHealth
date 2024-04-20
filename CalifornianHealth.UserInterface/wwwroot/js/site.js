@@ -18,20 +18,6 @@
         return response.json();
     };
 
-    //getAllConsultantCalendarsByConsultantId = async (id) => {
-    //    let url = this.urlBase + `api/ConsultantCalendar/${id}`;
-
-    //    const response = await fetch(url, {
-    //        method: 'GET',
-    //        headers: {
-    //            'Content-Type': 'application/json',
-    //            'Access-Control-Allow-Origin': '*'
-    //        },
-    //    });
-
-    //    return response.json()
-    //};
-
     getAllConsultantCalendarsByConsultantId = async (id) => {
         let url = this.urlBase + `api/ConsultantCalendar/${id}`;
 
