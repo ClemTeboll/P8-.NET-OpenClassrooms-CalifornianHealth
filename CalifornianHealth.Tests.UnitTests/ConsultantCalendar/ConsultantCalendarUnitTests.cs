@@ -84,6 +84,7 @@ public class ConsultantCalendarManagerTests
         // Arrange
         var appointmentInput = new AppointmentInputDto
         {
+            Id = 1,
             ConsultantId = 1,
             StartDateTime = DateTime.Now,
             EndDateTime = DateTime.Now.AddHours(1),
@@ -92,8 +93,8 @@ public class ConsultantCalendarManagerTests
 
         var consultantCalendar = new ConsultantCalendar
         {
-            Id = appointmentInput.Id,
-            ConsultantId = appointmentInput.ConsultantId,
+            Id = 1,
+            ConsultantId = 1,
             Date = DateTime.Now,
             Available = true
         };
